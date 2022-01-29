@@ -1,0 +1,142 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5596,        134]
+NotebookOptionsPosition[      4351,        107]
+NotebookOutlinePosition[      4792,        124]
+CellTagsIndexPosition[      4749,        121]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Download penultimate version of Micromegas", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227067969174`*^9}, 
+   3.852117510759647*^9},ExpressionUUID->"b6d226c2-5dbf-4bd7-9c4f-\
+fbd69b0839ca"],
+
+Cell["\<\
+Untar within WSL using \[LineSeparator]tar -xvf <archive name> <destination \
+folder>\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+   3.852022812935263*^9, 3.8520228441729*^9}, 
+   3.852117514296648*^9},ExpressionUUID->"6e8cf2e5-9205-4029-a14c-\
+bc0c052404f5"],
+
+Cell["\<\
+run \[OpenCurlyQuote]make\[CloseCurlyQuote] in that <destination folder>\
+\[LineSeparator]requires Fortran compiler\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+   3.852022812935263*^9, 3.852022842462903*^9}, {3.8520229846940746`*^9, 
+   3.8520230177460623`*^9}, {3.852023193854704*^9, 3.852023194646703*^9}, {
+   3.8520233456095867`*^9, 3.8520233499555535`*^9}, 
+   3.85211752080757*^9},ExpressionUUID->"893a7f49-fab4-47dc-9835-\
+97afbe5fb500"],
+
+Cell["\<\
+To create a new model inside Micromegas, go to Micromegas folder and run \
+\[LineSeparator]./newproject <model name>\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+  3.852022812935263*^9, 3.852022842462903*^9}, {3.8520229846940746`*^9, 
+  3.8520230177460623`*^9}, {3.852023193854704*^9, 3.852023194646703*^9}, {
+  3.8520233456095867`*^9, 3.8520234018871307`*^9}, {3.8520235010330305`*^9, 
+  3.85202350103603*^9}, {3.8521175246395407`*^9, 
+  3.8521175283995385`*^9}},ExpressionUUID->"3d074a04-12ee-4520-aded-\
+06813cc7d8a0"],
+
+Cell["\<\
+now copy \[OpenCurlyDoubleQuote].mdl\[CloseCurlyDoubleQuote] files in the \
+\[LineSeparator]<model name>/Work/Model \[LineSeparator]folder (from some \
+external program like SARAH, lanHEP, MADGRAPH etc.)\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+  3.852022812935263*^9, 3.852022842462903*^9}, {3.8520229846940746`*^9, 
+  3.8520230177460623`*^9}, {3.852023193854704*^9, 3.852023194646703*^9}, {
+  3.8520233456095867`*^9, 3.8520234018871307`*^9}, {3.8520235068390617`*^9, 
+  3.8520235859239845`*^9}},ExpressionUUID->"5b6c5be0-3bf5-46ce-b506-\
+54a04246f4a0"],
+
+Cell["Our example model is XYZ", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+  3.852022812935263*^9, 3.852022842462903*^9}, {3.8520229846940746`*^9, 
+  3.8520230177460623`*^9}, {3.852023193854704*^9, 3.852023194646703*^9}, {
+  3.8520233456095867`*^9, 3.8520234018871307`*^9}, {3.8520235068390617`*^9, 
+  3.852023584687013*^9}, {3.852023844642729*^9, 
+  3.852023857891296*^9}},ExpressionUUID->"1498ad81-6ef0-4560-aaa1-\
+848f3b8d64f4"],
+
+Cell[CellGroupData[{
+
+Cell["go inside XYZ and run\[LineSeparator]make main=main.c", "ItemNumbered",
+ CellChangeTimes->{{3.85202269174413*^9, 3.8520227050389185`*^9}, {
+  3.852022812935263*^9, 3.852022842462903*^9}, {3.8520229846940746`*^9, 
+  3.8520230177460623`*^9}, {3.852023193854704*^9, 3.852023194646703*^9}, {
+  3.8520233456095867`*^9, 3.8520234018871307`*^9}, {3.8520235068390617`*^9, 
+  3.852023584687013*^9}, {3.852023844642729*^9, 3.852023854063302*^9}, {
+  3.852024157078871*^9, 
+  3.852024178469843*^9}},ExpressionUUID->"7ff1176e-13f9-4bc0-b864-\
+0c88287820c4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NotebookDirectory", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.85211747646966*^9, 3.852117481960616*^9}},
+ CellLabel->
+  "1/25/22 22:08:02 \
+In[1]:=",ExpressionUUID->"e55095e6-6523-4289-8ab4-71197598769e"],
+
+Cell[BoxData["\<\"F:\\\\csbSite\\\\OptexDocs\\\\Interfaces\\\\\"\>"], "Output",
+ CellChangeTimes->{3.8521174824056435`*^9},
+ CellLabel->
+  "1/25/22 22:08:02 \
+Out[1]=",ExpressionUUID->"3f742ab6-74e5-4e81-89dd-a183ab036b2d"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{571., 612.5},
+WindowMargins->{{Automatic, 434.5}, {Automatic, 195.5}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"19111aa3-3665-4a34-9fd6-e7bca25b7fb5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 216, 3, 40, "ItemNumbered",ExpressionUUID->"b6d226c2-5dbf-4bd7-9c4f-fbd69b0839ca"],
+Cell[777, 25, 315, 7, 66, "ItemNumbered",ExpressionUUID->"6e8cf2e5-9205-4029-a14c-bc0c052404f5"],
+Cell[1095, 34, 500, 9, 66, "ItemNumbered",ExpressionUUID->"893a7f49-fab4-47dc-9835-97afbe5fb500"],
+Cell[1598, 45, 576, 10, 92, "ItemNumbered",ExpressionUUID->"3d074a04-12ee-4520-aded-06813cc7d8a0"],
+Cell[2177, 57, 613, 10, 118, "ItemNumbered",ExpressionUUID->"5b6c5be0-3bf5-46ce-b506-54a04246f4a0"],
+Cell[2793, 69, 473, 7, 40, "ItemNumbered",ExpressionUUID->"1498ad81-6ef0-4560-aaa1-848f3b8d64f4"],
+Cell[CellGroupData[{
+Cell[3291, 80, 551, 8, 66, "ItemNumbered",ExpressionUUID->"7ff1176e-13f9-4bc0-b864-0c88287820c4"],
+Cell[CellGroupData[{
+Cell[3867, 92, 230, 5, 50, "Input",ExpressionUUID->"e55095e6-6523-4289-8ab4-71197598769e"],
+Cell[4100, 99, 223, 4, 55, "Output",ExpressionUUID->"3f742ab6-74e5-4e81-89dd-a183ab036b2d"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

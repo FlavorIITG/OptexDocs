@@ -1,0 +1,2205 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     91409,       2197]
+NotebookOptionsPosition[     77205,       2002]
+NotebookOutlinePosition[     77635,       2019]
+CellTagsIndexPosition[     77592,       2016]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Preamble", "Chapter",
+ CellChangeTimes->{{3.8501080696841364`*^9, 
+  3.8501080712036996`*^9}},ExpressionUUID->"860540f0-e3ad-49df-87ef-\
+ed7adb617f53"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$HistoryLength", "=", "10"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8507891173610916`*^9, 3.850789120866105*^9}},
+ CellLabel->
+  "1/22/22 15:36:37 \
+In[1]:=",ExpressionUUID->"2f2160f8-9190-49a3-9d77-db8e59b0de5d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Install SLHA interface for ",
+ StyleBox["OptEx",
+  FontSlant->"Italic"],
+ " (",
+ StyleBox["Do it only once",
+  FontWeight->"Bold"],
+ ")"
+}], "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.8515649404233*^9, 
+  3.8515649764386225`*^9}},ExpressionUUID->"9ed897cc-ad98-4193-88b1-\
+a382caa1196e"],
+
+Cell["\<\
+Check whether you have the SLHA extension for OptEx installed or not:\
+\>", "Text",
+ CellChangeTimes->{{3.851564401906348*^9, 
+  3.8515644292307653`*^9}},ExpressionUUID->"f6138d52-d620-460b-89fe-\
+0b88f0a6da2c"],
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "[", "\"\<OptExInterfaceSLHA\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.851563021560709*^9, 3.8515630547408476`*^9}, {
+  3.8515645248613005`*^9, 3.8515645269372964`*^9}},
+ CellLabel->
+  "1/22/22 15:31:17 \
+In[2]:=",ExpressionUUID->"2a4e8168-09f8-44b3-b066-4712c521715e"],
+
+Cell["\<\
+If you have not installed the SLHA extension for OptEx yet, please run the \
+following cell:\
+\>", "Text",
+ CellChangeTimes->{{3.8515626716453648`*^9, 3.8515627457627954`*^9}, {
+  3.851562829915391*^9, 3.8515628632455907`*^9}, {3.851564387317864*^9, 
+  3.8515643886699796`*^9}, {3.8515665744638367`*^9, 
+  3.8515665859956923`*^9}},ExpressionUUID->"3a8bc727-3688-4157-bf42-\
+0e15f7339d36"],
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"package", "=", "\"\<OptExInterfaceSLHA-0.0.1.paclet\>\""}], 
+    "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"source", "=", 
+        RowBox[{
+        "\"\<https://github.com/FlavorIITG/OptexDocs/raw/master/Interfaces/\>\
+\"", "<>", "package"}]}], ",", 
+       RowBox[{"target", "=", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"$TemporaryDirectory", ",", "package"}], "}"}], "]"}]}]}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"$VersionNumber", "<", "12.1"}], ",", 
+        RowBox[{"Needs", "[", "\"\<PacletManager`\>\"", "]"}]}], " ", "]"}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"PacletInstall", "@", 
+       RowBox[{"URLDownload", "[", 
+        RowBox[{"source", ",", "target"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"DeleteFile", "[", "target", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.8515664534395947`*^9, 3.851566519329643*^9}, 
+   3.851567863826849*^9, {3.851652269357366*^9, 3.8516522701843557`*^9}},
+ CellLabel->
+  "1/21/22 23:22:30 \
+In[3]:=",ExpressionUUID->"9f9b14b2-f347-441a-812c-3a4d35a43b1b"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+  "URLDownload", "[", 
+   "\"\<https://github.com/FlavorIITG/OptexDocs/raw/master/Interfaces/\
+Installation_Instruction.nb\>\"", "]"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.851562773098937*^9, 3.8515627831386003`*^9}},
+ CellLabel->
+  "1/19/22 13:01:53 \
+In[8]:=",ExpressionUUID->"6e89794d-f689-4b36-a44f-f2cc45c85223"],
+
+Cell["You should now have the interface installed in your system:", "Text",
+ CellChangeTimes->{{3.8515644924732423`*^9, 
+  3.851564515053711*^9}},ExpressionUUID->"9f64fcda-d1d2-49d7-8fd4-\
+279f3b68bd4f"],
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "[", "\"\<OptExInterfaceSLHA\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8515652404559174`*^9, 3.851565241273921*^9}},
+ CellLabel->
+  "1/21/22 13:30:25 \
+In[2]:=",ExpressionUUID->"e5473bfb-83ee-4f2f-b3ec-231bcba5eda0"],
+
+Cell[TextData[{
+ "Run this ",
+ StyleBox["before",
+  FontSlant->"Italic"],
+ " ",
+ StyleBox["reinstalling",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " the interface:"
+}], "Text",
+ CellChangeTimes->{{3.8515644924732423`*^9, 3.851564515053711*^9}, {
+  3.8515661130915146`*^9, 
+  3.851566128253694*^9}},ExpressionUUID->"b83305fc-7e35-484b-b93c-\
+6f96c4a4014e"],
+
+Cell[BoxData[
+ RowBox[{"PacletUninstall", "[", "\"\<OptExInterfaceSLHA\>\"", "]"}]], "Input",\
+
+ CellChangeTimes->{{3.851565577780303*^9, 3.8515655859443026`*^9}},
+ CellLabel->
+  "1/22/22 15:30:59 \
+In[11]:=",ExpressionUUID->"e58666b6-a324-4f38-93a3-8930f565b6a2"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Load the Interface", "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.8515649404233*^9, 
+  3.851565012269481*^9}},ExpressionUUID->"4a819204-d89d-4d49-b06a-\
+6f73f59afbc1"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PacletTools`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.851602522111854*^9, 3.8516025454644694`*^9}, 
+   3.851602677092989*^9, {3.851602716110073*^9, 3.851602740241189*^9}, 
+   3.851602782978247*^9, {3.8516028136786184`*^9, 3.8516028319906225`*^9}, {
+   3.851604834281457*^9, 3.8516048359994516`*^9}, {3.85160486612894*^9, 
+   3.851604871592294*^9}},
+ CellLabel->
+  "1/22/22 15:31:22 \
+In[3]:=",ExpressionUUID->"cc1beaa3-21fe-4a63-a9aa-74591c09eb5e"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"DeleteDirectory", "[", 
+    RowBox[{
+    "\"\<F:\\\\Drive_SP\\\\Research\\\\NewPaclets\\\\OptExInterfaceSLHA\\\\\
+build\>\"", ",", 
+     RowBox[{"DeleteContents", "\[Rule]", "True"}]}], "]"}], ";"}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.851602522111854*^9, 3.8516025454644694`*^9}, 
+   3.851602677092989*^9, {3.851602716110073*^9, 3.851602740241189*^9}, 
+   3.851602782978247*^9, {3.8516028136786184`*^9, 3.8516028319906225`*^9}, {
+   3.851604834281457*^9, 3.8516048359994516`*^9}, {3.85160486612894*^9, 
+   3.851604871592294*^9}},
+ CellLabel->
+  "1/22/22 15:31:25 \
+In[4]:=",ExpressionUUID->"6effbd24-2068-4eeb-a3f1-674cb51b74e9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"result", "=", 
+   RowBox[{"PacletBuild", "[", 
+    RowBox[{
+    "\"\<F:\\\\Drive_SP\\\\Research\\\\NewPaclets\\\\OptExInterfaceSLHA\\\\\>\
+\"", ",", 
+     RowBox[{"OverwriteTarget", "->", "True"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"CopyFile", "[", 
+  RowBox[{
+   RowBox[{"result", "[", "\"\<PacletArchive\>\"", "]"}], ",", 
+   "\"\<F:\\\\csbSite\\\\OptexDocs\\\\Interfaces\\\\OptExInterfaceSLHA-0.0.1.\
+paclet\>\"", ",", 
+   RowBox[{"OverwriteTarget", "\[Rule]", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.851602522111854*^9, 3.8516025454644694`*^9}, 
+   3.851602677092989*^9, {3.851602716110073*^9, 3.851602740241189*^9}, 
+   3.851602782978247*^9, {3.8516028136786184`*^9, 3.8516028319906225`*^9}, {
+   3.851604834281457*^9, 3.8516048359994516`*^9}, 3.85160486612894*^9},
+ CellLabel->
+  "1/22/22 15:31:25 \
+In[5]:=",ExpressionUUID->"2e79b54b-9237-4c53-8502-686558095e83"],
+
+Cell[BoxData["\<\"F:\\\\csbSite\\\\OptexDocs\\\\Interfaces\\\\\
+OptExInterfaceSLHA-0.0.1.paclet\"\>"], "Output",
+ CellChangeTimes->{3.851740565649401*^9, 3.851740854438281*^9, 
+  3.851760829377884*^9, 3.851760960201304*^9, 3.851762284684882*^9, 
+  3.8517756020800843`*^9, 3.8517756533295813`*^9, 3.851834244201753*^9, 
+  3.851834492684449*^9},
+ CellLabel->
+  "1/22/22 15:31:32 \
+Out[1]=",ExpressionUUID->"2cd744e1-0ccc-4843-967d-59d88da73ee6"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "PacletInstall", "[", 
+   "\"\<F:\\\\csbSite\\\\OptexDocs\\\\Interfaces\\\\OptExInterfaceSLHA-0.0.1.\
+paclet\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.851602522111854*^9, 3.8516025454644694`*^9}, 
+   3.851602677092989*^9, {3.851602716110073*^9, 3.851602740241189*^9}, 
+   3.851602782978247*^9, 3.851631405761165*^9},
+ CellLabel->
+  "1/22/22 15:31:32 \
+In[2]:=",ExpressionUUID->"88fa12eb-7ed9-4e71-b262-3d8461099994"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<OptExInterfaceSLHA`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8515650174073772`*^9, 3.8515650262354083`*^9}, {
+  3.8515650965302963`*^9, 3.8515651073292203`*^9}},
+ CellLabel->
+  "1/22/22 15:31:34 \
+In[3]:=",ExpressionUUID->"f8fa4582-9a82-4247-a649-01ef65cac2f5"],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  "\"\<F:\\\\Drive_SP\\\\Research\\\\NewPaclets\\\\OptExInterfaceSLHA\\\\\
+Kernel\\\\OptExInterfaceSLHA.wl\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.851834743205087*^9, 3.8518347715200872`*^9}},
+ CellLabel->
+  "1/22/22 15:36:37 \
+In[2]:=",ExpressionUUID->"3c218dc1-9f40-48f7-b47e-8b570ccc7a10"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Create a SPheno Executable to generate Model-Spectrum", "Chapter",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 3.850551726466967*^9, {3.851580994257368*^9, 
+   3.8515810029263735`*^9}, {3.8515811440796027`*^9, 
+   3.851581173737234*^9}},ExpressionUUID->"0d10d9cc-3c0e-48d1-8aad-\
+a6981d9e7ba1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "$SPhenoHomePath", "=", 
+   "\"\<F:\\\\Drive_SP\\\\Spheno\\\\SPheno-4.0.4\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.850718648181741*^9, 3.850718668866742*^9}, {
+  3.8507187193397617`*^9, 3.850718732328763*^9}, {3.850718794307744*^9, 
+  3.8507187992607436`*^9}, {3.8507188579617825`*^9, 3.8507188620027657`*^9}, {
+  3.850718892154766*^9, 3.8507189180567904`*^9}},
+ CellLabel->
+  "1/22/22 00:04:32 \
+In[29]:=",ExpressionUUID->"5a1a78d5-bf36-4b1e-9f7e-06547db04ea5"],
+
+Cell[CellGroupData[{
+
+Cell["Running SARAH and SPheno", "Section",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 3.850551726466967*^9, {3.8505535197691927`*^9, 
+   3.8505535306981573`*^9}, 3.851581131048727*^9, {3.851581298151016*^9, 
+   3.851581300523042*^9}, {3.8516316943481646`*^9, 
+   3.851631694832173*^9}},ExpressionUUID->"38844a82-7714-4383-ba17-\
+c2a77a73a690"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Running SARAH (",
+ StyleBox["Don\[CloseCurlyQuote]t Run if Model is already Generated",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ ")"
+}], "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 3.850551726466967*^9, {3.8505535197691927`*^9, 
+   3.8505535306981573`*^9}, 3.851581131048727*^9, {3.851606876002836*^9, 
+   3.8516068930415707`*^9}},ExpressionUUID->"267e98b2-e40b-4758-a7f4-\
+bcad6e6e531d"],
+
+Cell[TextData[{
+ "This shows an example of running SARAH from its installation Directory:\n\
+(here, version \[OpenCurlyDoubleQuote]",
+ StyleBox["SARAH-4.14.5",
+  FontWeight->"Bold"],
+ "\[CloseCurlyDoubleQuote] was downloaded and extracted in the ",
+ StyleBox["Applications",
+  FontSlant->"Italic"],
+ " folder of ",
+ StyleBox["$UserBaseDirectory", "Input"],
+ ")"
+}], "Text",
+ CellChangeTimes->{{3.850711474919639*^9, 3.8507115134978237`*^9}, {
+  3.8507121152779093`*^9, 3.8507121535979075`*^9}, {3.8507121887424507`*^9, 
+  3.8507122013334646`*^9}},ExpressionUUID->"f7f230c9-f3f5-4219-adf6-\
+27e200e342e7"],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+    "$UserBaseDirectory", ",", "\"\<Applications\>\"", ",", 
+     "\"\<SARAH-4.14.5\>\"", ",", "\"\<SARAH.m\>\""}], "}"}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.850711517477768*^9, 3.850711521536904*^9}, {
+  3.850711561405901*^9, 3.8507116298206263`*^9}},
+ CellLabel->
+  "1/9/22 15:37:10 \
+In[3]:=",ExpressionUUID->"bf9425eb-31b9-4035-b90c-11caecf4ee2e"],
+
+Cell["\<\
+This reads the default MSSM model files and prepares them in SARAH:\
+\>", "Text",
+ CellChangeTimes->{{3.8507117091640778`*^9, 
+  3.8507117677843018`*^9}},ExpressionUUID->"b9797910-391d-4d70-9f80-\
+bff9f62a0715"],
+
+Cell[BoxData[
+ RowBox[{"Start", "[", "\"\<MSSM\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.722595591442892*^9, 3.722595603962243*^9}, {
+   3.7227518048478603`*^9, 3.722751839610518*^9}, {3.724390165132731*^9, 
+   3.724390168949532*^9}, {3.7243931088640423`*^9, 3.724393134903726*^9}, {
+   3.7275064216367483`*^9, 3.727506428356525*^9}, {3.728206911001483*^9, 
+   3.7282069162576942`*^9}, {3.7293403097134438`*^9, 3.729340315233267*^9}, {
+   3.742877602664329*^9, 3.742877605598425*^9}, {3.7434120763662*^9, 
+   3.743412078058587*^9}, {3.750138124828065*^9, 3.750138163323596*^9}, {
+   3.750745447549539*^9, 3.750745453735042*^9}, {3.7529916599364223`*^9, 
+   3.752991663378533*^9}, {3.7529930177206507`*^9, 3.752993044436417*^9}, 
+   3.753165152015562*^9, {3.75377266091637*^9, 3.7537726614016237`*^9}, {
+   3.754033015953212*^9, 3.75403301914787*^9}, {3.754033318734376*^9, 
+   3.7540333506413193`*^9}, {3.754046217620201*^9, 3.7540462212844887`*^9}, 
+   3.7541099812925787`*^9, 3.754111589278097*^9, {3.7577376067857447`*^9, 
+   3.757737610343831*^9}, {3.757739686386443*^9, 3.75773968691081*^9}, {
+   3.75774353370719*^9, 3.7577435545521173`*^9}, 3.757743588292219*^9, {
+   3.757755361269452*^9, 3.757755385826985*^9}, {3.757822822468001*^9, 
+   3.757822828466131*^9}, {3.7578280914603443`*^9, 3.7578280983073797`*^9}, {
+   3.757840188292674*^9, 3.7578401954164352`*^9}, {3.7602448780009537`*^9, 
+   3.76024487818302*^9}, {3.7604410260453043`*^9, 3.760441026243392*^9}, {
+   3.760679035425918*^9, 3.760679035634465*^9}, {3.761022504467382*^9, 
+   3.761022504641674*^9}, {3.761026666118121*^9, 3.761026666541642*^9}, {
+   3.838621801031938*^9, 3.838621804172142*^9}, {3.839145704620739*^9, 
+   3.83914571047933*^9}, 3.8506130554416757`*^9},
+ CellLabel->
+  "1/9/22 15:38:51 \
+In[4]:=",ExpressionUUID->"048b2b4d-31f3-4f3a-96fe-59b58ac273fb"],
+
+Cell[TextData[{
+ "Creates files for implementing MSSM in SPheno: (in the \[LineSeparator]",
+ StyleBox["FileNameJoin[{$sarahCurrentOutputMainDir, \
+\[OpenCurlyDoubleQuote]EWSB\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]SPheno\[CloseCurlyDoubleQuote]}] ", "Input"],
+ "\ndirectory)"
+}], "Text",
+ CellChangeTimes->{{3.8507118025103054`*^9, 3.8507118392143087`*^9}, {
+   3.850711956625321*^9, 3.850711999784437*^9}, 
+   3.8507189856897693`*^9},ExpressionUUID->"30a5a436-c94c-4ee6-9c5c-\
+5683de898c15"],
+
+Cell[BoxData[
+ RowBox[{"MakeSPheno", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.722751862531345*^9, 3.722751866578389*^9}, {
+   3.760248081753446*^9, 3.76024808944219*^9}, {3.7606790780818043`*^9, 
+   3.760679081079865*^9}, {3.7607630106653*^9, 3.760763013136961*^9}, 
+   3.838621818803685*^9},
+ CellLabel->
+  "1/9/22 15:43:41 \
+In[8]:=",ExpressionUUID->"16452831-8b4e-4cfe-9b69-643502084f2a"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"MakeCHep", "[", "]"}], "\n", 
+   RowBox[{"MakeTeX", "[", "]"}], "\n", 
+   RowBox[{"MakeUFO", "[", "]"}], "\n", 
+   RowBox[{"MassMatrix", "[", "hh", "]"}], "\n", 
+   RowBox[{"MassMatrix", "[", "Hpm", "]"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.7293406292173147`*^9, 3.729340635575706*^9}, {
+   3.760247511173955*^9, 3.760247513356043*^9}, 
+   3.850711661802619*^9},ExpressionUUID->"d2ca3b6a-0570-476c-9405-\
+1e192cc5807e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Install Model File in SPheno (",
+ StyleBox["Don\[CloseCurlyQuote]t Run if Model is already Generated",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ ")"
+}], "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 3.850551726466967*^9, {3.8505535197691927`*^9, 
+   3.8505535306981573`*^9}, 3.851581131048727*^9, {3.851581360550099*^9, 
+   3.851581364297168*^9}, {3.8516068977672195`*^9, 
+   3.851606898061212*^9}},ExpressionUUID->"003d67bf-d7cb-4906-83d1-\
+367921ce845d"],
+
+Cell[TextData[{
+ "Now copy the ",
+ StyleBox["\[OpenCurlyDoubleQuote]", "Input"],
+ StyleBox["SPheno", "Input",
+  FontSlant->"Italic"],
+ StyleBox["\[CloseCurlyDoubleQuote]", "Input"],
+ " folder in ",
+ StyleBox["FileNameJoin[{", "Input"],
+ StyleBox["$sarahCurrentOutputMainDir", "Input",
+  FontSlant->"Italic"],
+ StyleBox[", \[OpenCurlyDoubleQuote]", "Input"],
+ StyleBox["EWSB", "Input",
+  FontSlant->"Italic"],
+ StyleBox["\[CloseCurlyDoubleQuote]}]", "Input"],
+ " to the SPheno folder. Change the following path accordingly."
+}], "Text",
+ CellChangeTimes->{{3.8507184463601665`*^9, 3.85071851168923*^9}, {
+   3.8507185633103065`*^9, 3.850718619038788*^9}, 
+   3.850718989757805*^9},ExpressionUUID->"15b910ba-aefc-48d2-9308-\
+e29d39634e35"],
+
+Cell[BoxData[
+ RowBox[{"$sarahSPPath", "=", 
+  StyleBox[
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "$sarahCurrentOutputMainDir", ",", " ", "\"\<EWSB\>\"", ",", " ", 
+      "\"\<SPheno\>\""}], "}"}], "]"}], "Input"]}]], "Input",
+ CellChangeTimes->{{3.8515814415567074`*^9, 
+  3.8515814819836783`*^9}},ExpressionUUID->"e16775a2-2dc1-436f-91bf-\
+ee981c23cdbf"],
+
+Cell[BoxData[
+ RowBox[{"CopyDirectory", "[", 
+  RowBox[{
+   StyleBox["$sarahSPPath", "Input"], 
+   StyleBox[",", "Input"], 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"$SPhenoHomePath", ",", " ", "\"\<MSSM\>\""}], "}"}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8507187515347443`*^9, 3.8507187554347444`*^9}, {
+   3.850718958593771*^9, 3.850719034112813*^9}, 
+   3.8515814726506863`*^9},ExpressionUUID->"4acc1949-2992-4fb6-9005-\
+41f00aa6b16d"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Create a SPheno Executable to generate Model-Spectrum", "Section",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 3.850551726466967*^9, {3.851580994257368*^9, 
+   3.8515810029263735`*^9}, {3.8515811440796027`*^9, 
+   3.851581173737234*^9}},ExpressionUUID->"19045fad-4fe1-4029-8164-\
+3cc27b5b950d"],
+
+Cell[TextData[{
+ "To Run SPheno in ",
+ StyleBox["Windows 10",
+  FontSlant->"Italic"],
+ " or higher, one needs ",
+ StyleBox["Windows Subsystem for Linux",
+  FontSlant->"Italic"],
+ " (",
+ StyleBox["WSL",
+  FontWeight->"Bold"],
+ ") to be installed. Some default Linux system (e.g. ",
+ StyleBox["Ubuntu",
+  FontSlant->"Italic"],
+ ") should be loaded as well. If these prerequisites are fulfilled,  run the \
+following command.\nFor Linux, just make sure ",
+ StyleBox["$SPhenoHomePath",
+  FontSlant->"Italic"],
+ "  and ",
+ StyleBox["Model Name",
+  FontSlant->"Italic"],
+ " is provided correctly."
+}], "Text",
+ CellChangeTimes->{{3.8506147026692657`*^9, 3.8506147089173594`*^9}, {
+  3.8515961015395565`*^9, 3.851596220164589*^9}, {3.8516051117366943`*^9, 
+  3.851605117791763*^9}, {3.8516069375173807`*^9, 
+  3.8516069980390005`*^9}},ExpressionUUID->"d8bec370-55f0-4474-b764-\
+d3a37cdb8331"],
+
+Cell[BoxData[
+ RowBox[{"createSPhenoExecutable", "[", 
+  RowBox[{"$SPhenoHomePath", ",", "\"\<MSSM\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.8516025731839533`*^9, 3.8516025856950026`*^9}, {
+   3.851605034551814*^9, 3.851605056550813*^9}, 3.851606752341741*^9, {
+   3.8516311935680695`*^9, 3.851631194592066*^9}},
+ CellLabel->
+  "1/20/22 07:07:02 \
+In[5]:=",ExpressionUUID->"6e187325-8f6a-449a-9281-1159b5ecae05"],
+
+Cell[TextData[{
+ "The above \[OpenCurlyQuote]make\[CloseCurlyQuote] step creates a \
+Unix-executable file in the \[OpenCurlyQuote]bin\[CloseCurlyQuote] folder in \
+the ",
+ StyleBox["$SPhenoHomePath", "Input",
+  FontSlant->"Italic"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.8506147026692657`*^9, 3.8506147089173594`*^9}, {
+   3.8506147593404384`*^9, 3.8506147896876683`*^9}, {3.850614820396629*^9, 
+   3.8506148617417855`*^9}, {3.850614897780787*^9, 3.8506149863984957`*^9}, {
+   3.850719760866165*^9, 3.85071988636244*^9}, 
+   3.851605106360096*^9},ExpressionUUID->"20aff312-c821-45bc-905e-\
+1bc14b7db92f"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["SLHA and SPheno I/O", "Chapter",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+   3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+   3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, 
+   3.8505214536713867`*^9, 
+   3.850551726466967*^9},ExpressionUUID->"484bdb1f-597f-4475-a2e1-\
+8553af5ae703"],
+
+Cell[CellGroupData[{
+
+Cell["Modifying Input Files", "Section",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.8516325652674656`*^9, 
+  3.851632571558943*^9}},ExpressionUUID->"ba169a75-04b1-4806-897f-\
+1d0b8f36f7b4"],
+
+Cell[CellGroupData[{
+
+Cell["Reading an Input File", "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}},ExpressionUUID->"e740aa61-8735-46da-8b26-\
+6747c2adffb9"],
+
+Cell[TextData[{
+ "We read the \[OpenCurlyQuote]",
+ StyleBox["LesHouches.in.MSSM",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] file in the ",
+ StyleBox["FileNameJoin[{$SPhenoHomePath, \[OpenCurlyDoubleQuote]MSSM\
+\[CloseCurlyDoubleQuote], \[OpenCurlyDoubleQuote]Input_Files\
+\[CloseCurlyDoubleQuote]}]", "Input"],
+ " folder. We copy it to our working folder."
+}], "Text",
+ CellChangeTimes->{{3.8506233294741564`*^9, 3.850623430520857*^9}, {
+   3.850623477176684*^9, 3.850623490088801*^9}, 3.85072001775507*^9, {
+   3.8507200935220766`*^9, 3.85072009941908*^9}, {3.850720158219075*^9, 
+   3.8507201591891403`*^9}},ExpressionUUID->"088d6783-784d-4287-8f34-\
+85d78a234b51"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"selfMSSMPath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+      ",", "\"\<LesHouches.in.MSSM\>\""}], "}"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8505524473418016`*^9, 3.8505524694307995`*^9}, {
+   3.8505531906472683`*^9, 3.8505532337542677`*^9}, {3.850623682244212*^9, 
+   3.8506237049522266`*^9}, 3.8506242540283036`*^9, 3.8516318172270155`*^9},
+ CellLabel->
+  "1/22/22 00:04:38 \
+In[30]:=",ExpressionUUID->"431821c9-aef2-4468-88ca-be42789dea61"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CopyFile", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "$SPhenoHomePath", ",", "\"\<MSSM\>\"", ",", "\"\<Input_Files\>\"", 
+       ",", "\"\<LesHouches.in.MSSM\>\""}], "}"}], "]"}], ",", "selfMSSMPath",
+     ",", 
+    RowBox[{"OverwriteTarget", "\[Rule]", "True"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{3.851631852898187*^9, 3.8516319510414047`*^9},
+ CellLabel->
+  "1/22/22 00:04:40 \
+In[31]:=",ExpressionUUID->"82c0335f-163c-40e0-8b56-740582cc9a7f"],
+
+Cell["\<\
+Now we want to edit the newly copied file. To do that, first let\
+\[CloseCurlyQuote]s import it in a format which Mathematica understands... \
+\>", "Text",
+ CellChangeTimes->{
+  3.8507201706090784`*^9, {3.850720389602835*^9, 
+   3.8507204636984463`*^9}},ExpressionUUID->"30be3c8b-a9bd-4989-8a0c-\
+92ecc25299ae"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MSSMInputBlocks", "=", 
+   RowBox[{"breakSPCBlock", "[", "selfMSSMPath", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8506985566993885`*^9, 3.8506985675833826`*^9}, 
+   3.850702481637989*^9, 3.850702562434989*^9, {3.850720503233458*^9, 
+   3.8507205309154367`*^9}, 3.8516319998852825`*^9, {3.851777706743922*^9, 
+   3.851777754157962*^9}},
+ CellLabel->
+  "1/22/22 00:04:43 \
+In[32]:=",ExpressionUUID->"18f2972a-6cef-4a64-ba54-a45fcd92ba62"],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s read the numerical contents of the file. Compare these \
+with the original file open in a text editor...\
+\>", "Text",
+ CellChangeTimes->{
+  3.8507201706090784`*^9, {3.850720389602835*^9, 3.8507204636984463`*^9}, {
+   3.8507210372116795`*^9, 
+   3.850721075646056*^9}},ExpressionUUID->"f83fc1c2-581a-493c-af14-\
+fb647aaf6041"],
+
+Cell[BoxData[
+ RowBox[{"createBlockArray", "/@", "MSSMInputBlocks"}]], "Input",
+ CellChangeTimes->{{3.8507205934734488`*^9, 3.8507205960674367`*^9}},
+ CellLabel->
+  "1/22/22 00:04:45 \
+In[33]:=",ExpressionUUID->"de226e1f-77e3-47e7-b769-168dfc80fed2"],
+
+Cell["\<\
+As the indices of the MINPAR block are in serial order, use this to isolate \
+there values...\
+\>", "Text",
+ CellChangeTimes->{{3.8507211163630595`*^9, 
+  3.8507211493865404`*^9}},ExpressionUUID->"65566304-6f26-4e70-ab11-\
+00b7ec7dade3"],
+
+Cell[BoxData[
+ RowBox[{"SPhenoMINPAR", "[", "MSSMInputBlocks", "]"}]], "Input",
+ CellChangeTimes->{{3.8506989838077717`*^9, 3.8506989889367447`*^9}, {
+   3.8507013137459145`*^9, 3.850701314020926*^9}, 3.850720564067437*^9},
+ CellLabel->
+  "1/21/22 23:48:30 \
+In[19]:=",ExpressionUUID->"95cb0ba1-0a3a-4e22-be5b-6aab150fdd9f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Writing an Input File", "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851632435284626*^9, 
+  3.8516324355136538`*^9}},ExpressionUUID->"8aa17e57-316b-4dba-9b6b-\
+ee38efda4e6d"],
+
+Cell[CellGroupData[{
+
+Cell["Generic Example", "Subsubsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505319440290656`*^9, 3.850531971334123*^9}, {
+  3.850551744564968*^9, 
+  3.850551747570962*^9}},ExpressionUUID->"1dfd6b03-aaf9-4f3f-99c3-\
+fbd7e5a0211e"],
+
+Cell[TextData[{
+ "This creates a SPheno input file \[OpenCurlyDoubleQuote]",
+ StyleBox["LesHouches.in",
+  FontWeight->"Bold"],
+ "\[CloseCurlyDoubleQuote] in the working directory:"
+}], "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.8507061201045723`*^9}, {
+  3.850706170315258*^9, 
+  3.8507062013204055`*^9}},ExpressionUUID->"5246b694-f289-4c94-9ee4-\
+c4d659f8bcfe"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{"{", "}"}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8505222759000154`*^9, 3.850522285578992*^9}, 
+   3.850531999620096*^9, 3.850553367431924*^9, {3.850706055566218*^9, 
+   3.8507060577472053`*^9}, {3.8515650787838917`*^9, 3.851565079895011*^9}},
+ CellLabel->
+  "1/21/22 23:51:18 \
+In[20]:=",ExpressionUUID->"de620ed8-4109-4c52-b9a9-ad75b8e37010"],
+
+Cell["\<\
+Supply the path (and specific filename) as the first argument to create that \
+file at a specific location: \
+\>", "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 
+  3.8507062469579363`*^9}},ExpressionUUID->"16e18f1a-a605-466e-91e9-\
+245e8eff2d7b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", "}"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.850706019200227*^9, 3.8507060419851913`*^9}},
+ CellLabel->
+  "1/19/22 14:20:32 \
+In[7]:=",ExpressionUUID->"5ba94d39-8da9-43e1-b742-ff0fd7cd20b3"],
+
+Cell[TextData[{
+ "Open the \[OpenCurlyDoubleQuote]test.in\[CloseCurlyDoubleQuote] in some \
+other editor to track the changes in it...\nThe second argument (as a \
+vector), adds consecutive entries in the ",
+ StyleBox["MINPAR",
+  FontSlant->"Italic"],
+ " block: "
+}], "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 3.8507062469579363`*^9}, {3.850706326302085*^9, 
+  3.850706371114685*^9}, {3.8507064062993364`*^9, 
+  3.8507064325468335`*^9}},ExpressionUUID->"6ce99f3c-99c2-41c1-8c46-\
+a31b531d305e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"80", ",", "250", ",", "1000", ",", "10"}], "}"}]}], "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.8505513915185394`*^9, 3.8505513975115414`*^9}, {
+   3.8505515035547223`*^9, 3.8505515149172406`*^9}, 3.8507063862726917`*^9},
+ CellLabel->
+  "1/19/22 14:20:43 \
+In[8]:=",ExpressionUUID->"321c8046-9352-4cd8-84f4-0d438998aec9"],
+
+Cell["\<\
+If you do not want to add MINPAR entries with customized indices, use this \
+option...\
+\>", "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 3.8507062469579363`*^9}, {3.850706326302085*^9, 
+  3.850706371114685*^9}, {3.8507064062993364`*^9, 3.8507064325468335`*^9}, {
+  3.8507065619911623`*^9, 
+  3.85070662274123*^9}},ExpressionUUID->"593ffaf5-c760-4ee7-9d30-\
+0a03b535a4d8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", "}"}], ",", 
+    RowBox[{"CustomMINPAR", "->", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "80"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "250"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"7", ",", "1000"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "10"}], "}"}]}], "}"}]}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8507056426921377`*^9, 3.8507057127011547`*^9}, {
+  3.8507058408899064`*^9, 3.8507058459319043`*^9}, {3.8507059860221868`*^9, 
+  3.8507059928081865`*^9}},
+ CellLabel->
+  "1/19/22 14:20:47 \
+In[9]:=",ExpressionUUID->"433a99d9-6726-49c5-9125-36815428002f"],
+
+Cell["Setting this option supersedes the second argument...", "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 3.8507062469579363`*^9}, {3.850706326302085*^9, 
+  3.850706371114685*^9}, {3.8507064062993364`*^9, 3.8507064325468335`*^9}, {
+  3.8507065619911623`*^9, 
+  3.8507067080691824`*^9}},ExpressionUUID->"36864e89-f4b4-46b2-a157-\
+3de53a94b275"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"80", ",", "250", ",", "1000", ",", "10"}], "}"}], ",", 
+    RowBox[{"CustomMINPAR", "->", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "70"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "230"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"7", ",", "1200"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "20"}], "}"}]}], "}"}]}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8507056426921377`*^9, 3.8507057127011547`*^9}, {
+  3.8507058408899064`*^9, 3.8507058459319043`*^9}, {3.8507059860221868`*^9, 
+  3.850706000013188*^9}, {3.850706713320189*^9, 3.850706719677186*^9}},
+ CellLabel->
+  "1/19/22 14:20:57 \
+In[10]:=",ExpressionUUID->"c870a313-9e2e-4207-b5f9-6d73c10befc5"],
+
+Cell[TextData[{
+ "Customized ",
+ StyleBox["MODSEL",
+  FontSlant->"Italic"],
+ " block can be added with an option: "
+}], "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 3.8507062469579363`*^9}, {3.850706326302085*^9, 
+  3.850706371114685*^9}, {3.8507064062993364`*^9, 
+  3.8507064693830934`*^9}},ExpressionUUID->"fa6306ea-da60-4e0b-9824-\
+5a6952db3656"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"80", ",", "250", ",", "1000", ",", "10"}], "}"}], ",", 
+    RowBox[{"MODSEL", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"3", ",", "11"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"6", ",", "1"}], "}"}]}], "}"}]}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8505513915185394`*^9, 3.8505513975115414`*^9}, {
+  3.8505515035547223`*^9, 3.8505515149172406`*^9}},
+ CellLabel->
+  "1/19/22 14:21:06 \
+In[11]:=",ExpressionUUID->"1e15df7c-dbe6-4195-9b9f-214deb9ed5c2"],
+
+Cell["Add customized blocks too...", "Text",
+ CellChangeTimes->{{3.8507060959621887`*^9, 3.850706165806303*^9}, {
+  3.850706213519419*^9, 3.8507062469579363`*^9}, {3.850706326302085*^9, 
+  3.850706371114685*^9}, {3.8507064062993364`*^9, 
+  3.85070649834116*^9}},ExpressionUUID->"def6057b-74e3-4dd2-90ea-\
+11779e34f19d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WriteLesHouchesIn", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Exports\>\"", ",", 
+       "\"\<test.in\>\""}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"80", ",", "250", ",", "1000", ",", "10"}], "}"}], ",", 
+    RowBox[{"AddBlocks", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"EXTPAR", ",", 
+         RowBox[{"{", 
+          RowBox[{"25", ",", 
+           RowBox[{"1", "\[Times]", 
+            SuperscriptBox["10", "1"]}]}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"YBIN", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0.5"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "2", ",", "0.5"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", "3", ",", "0.6"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"YTIN", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0.1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "2", ",", "0.2"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", "3", ",", "0.3"}], "}"}]}], "}"}]}], "}"}]}]}], 
+   "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.850522201395852*^9, 3.850522201397853*^9}, {
+   3.8505225146696515`*^9, 3.850522515173649*^9}, {3.8505309833045444`*^9, 
+   3.8505309891215334`*^9}, {3.850531028311965*^9, 3.8505310539069557`*^9}, {
+   3.8505311291612897`*^9, 3.8505311435381002`*^9}, {3.850531442156278*^9, 
+   3.8505314732092557`*^9}, {3.850531534016782*^9, 3.850531556936764*^9}, {
+   3.8505316176378646`*^9, 3.850531646579636*^9}, {3.8505515741892767`*^9, 
+   3.850551583219284*^9}, 3.850551617149279*^9, 3.8507052030122657`*^9, 
+   3.8507052404300804`*^9},
+ CellLabel->
+  "1/19/22 14:21:12 \
+In[12]:=",ExpressionUUID->"4e8ef4fa-a50c-495a-aa8b-d8a0e832a36b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Specific Example 1 (MSSM) ", "Subsubsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505319440290656`*^9, 3.850531982936086*^9}, {
+  3.8505517533209624`*^9, 
+  3.8505517749866514`*^9}},ExpressionUUID->"c498e166-6f5a-481e-b504-\
+6907e6e3fb61"],
+
+Cell["Read the updated SM inputs from the RPV MSSM:", "Text",
+ CellChangeTimes->{{3.850552495824802*^9, 
+  3.850552546864135*^9}},ExpressionUUID->"3647f7f4-05ec-42df-94cf-\
+f5b43cff7e85"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exampleModPath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+      ",", "\"\<LesHouches.in.MSSMBiRpV.store\>\""}], "}"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.8505524473418016`*^9, 3.8505524694307995`*^9}, {
+   3.8505531906472683`*^9, 3.8505532337542677`*^9}, {3.8515711559616623`*^9, 
+   3.851571188620951*^9}, {3.851571256062604*^9, 3.8515712882456055`*^9}, {
+   3.8515713245803623`*^9, 3.8515713315740395`*^9}, {3.8515713967730713`*^9, 
+   3.8515714091392775`*^9}, 3.8515801881210413`*^9},
+ CellLabel->
+  "1/21/22 23:56:19 \
+In[22]:=",ExpressionUUID->"d2d24ca4-ecb4-4afd-837f-6165b4133dd2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"blks", "=", 
+     RowBox[{"breakSPCBlock", "[", "exampleModPath", "]"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"createBlockArray", "[", 
+    RowBox[{"blks", "[", "\"\<SMINPUTS\>\"", "]"}], "]"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.8505524473418016`*^9, 3.8505524694307995`*^9}, {
+   3.8505531906472683`*^9, 3.8505532337542677`*^9}, {3.8515711559616623`*^9, 
+   3.851571188620951*^9}, {3.851571256062604*^9, 3.8515712882456055`*^9}, {
+   3.8515713245803623`*^9, 3.8515713315740395`*^9}, {3.8515713967730713`*^9, 
+   3.8515714091392775`*^9}, 3.8515801881210413`*^9},
+ CellLabel->
+  "1/21/22 23:56:41 \
+In[23]:=",ExpressionUUID->"b537e61f-1717-4fc8-90ed-9ab77518eb4f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0.0000116637`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "0.11870000000000001`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "91.1887`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "4.18`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "173.5`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "1.77669`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.8517784019126015`*^9},
+ CellLabel->
+  "1/21/22 23:56:41 \
+Out[23]=",ExpressionUUID->"480e37e0-1851-4859-80b7-db07032ad71f"]
+}, Open  ]],
+
+Cell["Read different parts of the default MSSM file: ", "Text",
+ CellChangeTimes->{{3.8505525545801277`*^9, 
+  3.8505525876051383`*^9}},ExpressionUUID->"b34e7e73-011b-4af8-a3e5-\
+4bc9bed50aac"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exampleMSSMmodPath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+      ",", "\"\<LesHouches.in.store\>\""}], "}"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8505525992631283`*^9, 3.8505526705821247`*^9}, {
+  3.8515714239992123`*^9, 3.851571428358159*^9}},
+ CellLabel->
+  "1/21/22 23:57:35 \
+In[24]:=",ExpressionUUID->"a1bce1c3-b86e-4e2f-82dd-942c81d91627"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"blks", "=", 
+     RowBox[{"breakSPCBlock", "[", "exampleMSSMmodPath", "]"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Column", "@", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"SPhenoMINPAR", "[", "blks", "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<MINPAR\>\"", "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<MODSEL\>\"", "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<SPhenoInput\>\"", "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<SMINPUTS\>\"", "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"SPhenoExtraBlocks", "[", "blks", "]"}]}], 
+     "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",\
+
+ CellChangeTimes->{{3.8515717148516507`*^9, 3.851571718781654*^9}, {
+  3.851571840077839*^9, 3.851571860790985*^9}, {3.8515798209492474`*^9, 
+  3.8515798428223495`*^9}, {3.8515799144652233`*^9, 3.851579972529517*^9}, {
+  3.8515800566019354`*^9, 3.851580058775383*^9}, {3.851580144463041*^9, 
+  3.85158015619304*^9}},
+ CellLabel->
+  "1/21/22 23:57:50 \
+In[25]:=",ExpressionUUID->"86a9d8b7-d7ac-400f-9e83-1dfd3dec46a2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     RowBox[{"{", 
+      RowBox[{"70.`", ",", "250.`", ",", "1", ",", 
+       RowBox[{"-", "300.`"}]}], "}"}]},
+    {
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "70.`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "250.`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"5", ",", 
+         RowBox[{"-", "300.`"}]}], "}"}]}], "}"}]},
+    {
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], "}"}], "}"}]},
+    {
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"11", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"12", ",", "0.0001`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"21", ",", "0"}], "}"}]}], "}"}]},
+    {
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"2", ",", "0.000011663790000000001`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"3", ",", "0.1184`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "91.1876`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"5", ",", "4.18`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"6", ",", "173.10000000000002`"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"7", ",", "1.77682`"}], "}"}]}], "}"}]},
+    {
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"EXTPAR", ",", 
+        RowBox[{"{", 
+         RowBox[{"25", ",", "10.`"}], "}"}]}], "}"}], "}"}]}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{3.851778470620355*^9},
+ CellLabel->
+  "1/21/22 23:57:50 \
+Out[25]=",ExpressionUUID->"7608bc30-f40a-4ce5-a38d-dabfed20c1b4"]
+}, Open  ]],
+
+Cell["\<\
+Let us write a new (customized) MSSM input file at a desired location, with \
+the SM inputs replaced with the updated ones, but the rest as it it...\
+\>", "Text",
+ CellChangeTimes->{{3.8505525545801277`*^9, 3.8505525876051383`*^9}, {
+  3.850553068209934*^9, 
+  3.850553128196319*^9}},ExpressionUUID->"2d3e35fa-15f9-4866-9d76-\
+23fdf3ded5d8"],
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"blks", "=", 
+      RowBox[{"breakSPCBlock", "[", "exampleMSSMmodPath", "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"inptblk", "=", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{
+        RowBox[{"breakSPCBlock", "[", "exampleModPath", "]"}], "[", 
+        "\"\<SMINPUTS\>\"", "]"}], "]"}]}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"WriteLesHouchesIn", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+        ",", "\"\<updatedMSSM.in\>\""}], "}"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"SPhenoMINPAR", "[", "blks", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"MODSEL", "\[Rule]", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<MODSEL\>\"", "]"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AddBlocks", "\[Rule]", 
+      RowBox[{"SPhenoExtraBlocks", "[", "blks", "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"SPhenoInputList", "->", 
+      RowBox[{"createBlockArray", "[", 
+       RowBox[{"blks", "[", "\"\<SPhenoInput\>\"", "]"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"SMInputList", "->", "inptblk"}]}], "\[IndentingNewLine]", 
+    "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.850553131932263*^9, 3.850553175383266*^9}, {
+  3.85055324051328*^9, 3.8505533014444246`*^9}, {3.8515802307265263`*^9, 
+  3.851580325116005*^9}, {3.8515805289917*^9, 3.8515805966792045`*^9}},
+ CellLabel->
+  "1/19/22 17:00:07 \
+In[25]:=",ExpressionUUID->"20797f44-fabd-49b1-9e6b-e1ccd69c1c93"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Preparing the MSSM Input file for the runs...", "Subsection",
+ CellChangeTimes->{{3.8516322977394056`*^9, 
+  3.851632316500985*^9}},ExpressionUUID->"6c0c50b5-47ce-4505-9099-\
+26898e8e24f3"],
+
+Cell["Examine the \[OpenCurlyDoubleQuote]DECAYOPTIONS\[CloseCurlyDoubleQuote] \
+block:", "Text",
+ CellChangeTimes->{{3.8507211163630595`*^9, 
+  3.8507211744648542`*^9}},ExpressionUUID->"cd87610b-c0d1-4859-b92c-\
+2a404738e102"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"createBlockAsso", "@", 
+   RowBox[{"MSSMInputBlocks", "[", "\"\<DECAYOPTIONS\>\"", "]"}]}], "//", 
+  "Dataset"}]], "Input",
+ CellChangeTimes->{{3.8507208000334496`*^9, 3.8507209031014776`*^9}},
+ CellLabel->
+  "1/22/22 00:05:50 \
+In[35]:=",ExpressionUUID->"4b34d7c9-eb2d-4abb-a0b6-42ca9e31b6af"],
+
+Cell["\<\
+We want to edit the \[OpenCurlyQuote]DECAYOPTIONS\[CloseCurlyQuote] block in \
+it and replace all values to \[OpenCurlyQuote]0\[CloseCurlyQuote] (for \
+calculation speed-up).\
+\>", "Text",
+ CellChangeTimes->{
+  3.8507204748204765`*^9},ExpressionUUID->"ac287e82-1a1f-4625-8c3d-\
+3b426e2b04f8"],
+
+Cell[BoxData[{
+ RowBox[{"createBlockArray", "@", 
+  RowBox[{"MSSMInputBlocks", "[", "\"\<DECAYOPTIONS\>\"", "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"#", ",", "0"}], "}"}], "&"}], "/@", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"Transpose", "[", "%", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "\n", 
+ RowBox[{"newblk", "=", 
+  RowBox[{"Prepend", "[", 
+   RowBox[{"%", ",", 
+    RowBox[{"ToExpression", "[", "\"\<DECAYOPTIONS\>\"", "]"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8507209136904545`*^9, 3.850721015079666*^9}, {
+   3.850721234542918*^9, 3.850721276562917*^9}, {3.85072145990749*^9, 
+   3.8507214608515263`*^9}, 3.8517788076650705`*^9, 
+   3.851779026170936*^9},ExpressionUUID->"800ea85e-4b23-4a17-a340-\
+5b51bdc10a1f"],
+
+Cell[TextData[{
+ "Compare this with the old block, written in the format suitable for \
+\[OpenCurlyQuote]",
+ StyleBox["WriteLesHouchesIn", "Input"],
+ "\[CloseCurlyQuote]"
+}], "Text",
+ CellChangeTimes->{{3.850721283564917*^9, 
+  3.850721311655038*^9}},ExpressionUUID->"efa9dcdb-326a-4463-b274-\
+f4a3406976bf"],
+
+Cell[BoxData[
+ RowBox[{"SPhenoExtraBlocks", "[", "MSSMInputBlocks", "]"}]], "Input",
+ CellChangeTimes->{
+  3.850552715434123*^9, {3.850702104089136*^9, 3.8507021149151363`*^9}, 
+   3.8507206407074385`*^9},
+ CellLabel->
+  "1/22/22 00:07:10 \
+In[41]:=",ExpressionUUID->"943449a0-b4eb-4429-a901-2144ad3f709f"],
+
+Cell["Let\[CloseCurlyQuote]s create a path for the updated file:", "Text",
+ CellChangeTimes->{{3.8505525545801277`*^9, 3.8505525876051383`*^9}, {
+  3.8507213385910854`*^9, 
+  3.8507213510881033`*^9}},ExpressionUUID->"3d325dc7-65db-4411-a1ed-\
+d4ab007c6c0d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"updatedModPath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+      ",", "\"\<updatedMSSM.in\>\""}], "}"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8505525992631283`*^9, 3.8505526705821247`*^9}, {
+   3.85062427669946*^9, 3.850624293607932*^9}, 3.8506247222425165`*^9, {
+   3.850625531470689*^9, 3.8506255483236675`*^9}, {3.8516325215644264`*^9, 
+   3.8516325234343653`*^9}},
+ CellLabel->
+  "1/22/22 00:07:20 \
+In[42]:=",ExpressionUUID->"3d1a6f18-1b8f-45d8-9053-1f631d876f2c"],
+
+Cell["\<\
+Let us write a new (customized) MSSM input file at a desired location, with \
+the \[OpenCurlyQuote]DECAYOPTIONS\[CloseCurlyQuote] updated, but the rest as \
+it it...\
+\>", "Text",
+ CellChangeTimes->{{3.8505525545801277`*^9, 3.8505525876051383`*^9}, {
+  3.850553068209934*^9, 3.850553128196319*^9}, {3.8507214176664705`*^9, 
+  3.8507214216044827`*^9}},ExpressionUUID->"26c464b1-770f-4ced-b56b-\
+06fdda2f7320"],
+
+Cell[BoxData[
+ RowBox[{"WriteLesHouchesIn", "[", "\[IndentingNewLine]", 
+  RowBox[{"updatedModPath", ",", "\[IndentingNewLine]", 
+   RowBox[{"SPhenoMINPAR", "[", "MSSMInputBlocks", "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"MODSEL", "\[Rule]", 
+    RowBox[{"createBlockArray", "[", 
+     RowBox[{"MSSMInputBlocks", "[", "\"\<MODSEL\>\"", "]"}], "]"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AddBlocks", "\[Rule]", 
+    RowBox[{"{", "newblk", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"SPhenoInputList", "->", 
+    RowBox[{"createBlockArray", "[", 
+     RowBox[{"MSSMInputBlocks", "[", "\"\<SPhenoInput\>\"", "]"}], "]"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"SMInputList", "->", 
+    RowBox[{"createBlockArray", "[", 
+     RowBox[{"MSSMInputBlocks", "[", "\"\<SMINPUTS\>\"", "]"}], "]"}]}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.850553131932263*^9, 3.850553175383266*^9}, {
+   3.85055324051328*^9, 3.8505533014444246`*^9}, {3.850624729267516*^9, 
+   3.8506247451545362`*^9}, {3.8507021359091377`*^9, 
+   3.8507022222571363`*^9}, {3.850702939738044*^9, 3.8507029463619995`*^9}, {
+   3.8507214316964693`*^9, 3.8507214795244703`*^9}, 
+   3.85163253233873*^9},ExpressionUUID->"7cedeb8f-4a20-4a2d-b84e-\
+3a8b46669468"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Running SPheno and Reading Outputs", "Section",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.8516325652674656`*^9, 3.851632571558943*^9}, {
+  3.8516326394988275`*^9, 
+  3.8516326525502515`*^9}},ExpressionUUID->"40484e13-5a2b-4f5b-983e-\
+ac5c4fce2818"],
+
+Cell[TextData[{
+ "The following paths are needed to complete a SPheno. ",
+ StyleBox["$SPhenoHomePath",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " should be your installation directory, ",
+ StyleBox["$SPhenoInputFilePath",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " is the path of the input file to be read by SPheno. ",
+ StyleBox["$outDirPresent",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " is the path of the directory where you want your SPheno output files to be \
+created (preferably, don\[CloseCurlyQuote]t keep other files in this folder).\
+\[LineSeparator]Change the following paths according to your individual \
+system."
+}], "Text",
+ CellChangeTimes->{{3.8517392818809175`*^9, 3.851739454014841*^9}, {
+  3.8517398126877766`*^9, 
+  3.851739837456167*^9}},ExpressionUUID->"39a3e06b-55b9-4754-a472-\
+ded68c34b747"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "$SPhenoHomePath", "=", 
+   "\"\<F:\\\\Drive_SP\\\\Spheno\\\\SPheno-4.0.4\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$SPhenoInputFilePath", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<InputFiles\>\"", 
+      ",", "\"\<updatedMSSM.in\>\""}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$outDirPresent", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MSSMoutput\>\""}], 
+     "}"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.850718648181741*^9, 3.850718668866742*^9}, {
+  3.8507187193397617`*^9, 3.850718732328763*^9}, {3.850718794307744*^9, 
+  3.8507187992607436`*^9}, {3.8507188579617825`*^9, 3.8507188620027657`*^9}, {
+  3.850718892154766*^9, 3.8507189180567904`*^9}, {3.851737591189977*^9, 
+  3.8517376253839774`*^9}, {3.8517392081192675`*^9, 3.851739223312153*^9}},
+ CellLabel->
+  "1/22/22 15:36:41 \
+In[3]:=",ExpressionUUID->"ab9ea3e9-40e8-4651-8060-ab8c1f338343"],
+
+Cell[BoxData[
+ RowBox[{"FileNames", "[", 
+  RowBox[{"All", ",", "$outDirPresent"}], "]"}]], "Input",
+ CellLabel->
+  "1/22/22 15:15:58 \
+In[6]:=",ExpressionUUID->"03b92d7f-1f77-45e7-84a4-9c487cd662e5"],
+
+Cell[CellGroupData[{
+
+Cell["Running SPheno", "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.85173951377719*^9, 3.8517395299598455`*^9}, {
+  3.851740236990852*^9, 
+  3.851740237423826*^9}},ExpressionUUID->"f68da5a1-4ed2-4bf1-805d-\
+aed44c598992"],
+
+Cell["\<\
+SPheno will be run as an external process, controlled from Mathematica. For \
+this, we need to run an external shell process. This part is Operating System \
+dependent.  runSPhenoStandAlone takes care of that for you. All processes \
+opened by this is closed after the end of SPheno run.\
+\>", "Text",
+ CellChangeTimes->{{3.8517395819939313`*^9, 3.8517395888798847`*^9}, {
+  3.8517396543045683`*^9, 3.851739753130205*^9}, {3.851739844144685*^9, 
+  3.851739900527825*^9}, {3.851762804115152*^9, 
+  3.8517628713192635`*^9}},ExpressionUUID->"c4a360d8-0537-4e59-aae3-\
+a53be1626002"],
+
+Cell[BoxData[
+ RowBox[{"runSPhenoStandAlone", "[", 
+  RowBox[{
+  "$SPhenoInputFilePath", ",", " ", "$SPhenoHomePath", ",", " ", 
+   "\"\<MSSM\>\"", ",", " ", "$outDirPresent"}], "]"}]], "Input",ExpressionUUI\
+D->"393590a8-3225-443b-a19a-e2cfb9af43a7"],
+
+Cell[BoxData[
+ RowBox[{"FileNames", "[", 
+  RowBox[{"All", ",", "$outDirPresent"}], "]"}]], "Input",ExpressionUUID->\
+"ede16c3d-145e-467f-858d-027b61edb79a"],
+
+Cell["\<\
+When we want to repeatedly call SPheno for batch evaluation (a general case \
+for parameter scanning), it\[CloseCurlyQuote]s better to just start one shell \
+process and then call SPheno repeatedly. For this, use runSPheno, which uses \
+a process (externally generated) ID to run commands. The prerequisite is to \
+run that process beforehand - again, an OS dependent process - demonstrated \
+below. Run just the part relevant for you.\
+\>", "Text",
+ CellChangeTimes->{{3.8517399060158377`*^9, 3.8517400597919292`*^9}, {
+  3.8517400966172066`*^9, 3.85174015861604*^9}, {3.8517609995448713`*^9, 
+  3.8517609998618546`*^9}, {3.851762878020486*^9, 
+  3.8517628790305185`*^9}},ExpressionUUID->"ed409771-caae-4efc-9c57-\
+402bdaa28f55"],
+
+Cell[BoxData[
+ RowBox[{"DeleteFile", "[", 
+  RowBox[{"FileNames", "[", 
+   RowBox[{"All", ",", "$outDirPresent"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8517630712524943`*^9, 3.85176307748849*^9}, {
+   3.851763263858158*^9, 3.8517632644991674`*^9}, 3.8517633097891593`*^9},
+ CellLabel->
+  "1/21/22 19:44:25 \
+In[24]:=",ExpressionUUID->"a9cf524a-4510-4d08-90bc-59534776212a"],
+
+Cell["For Windows", "Text",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.85173951377719*^9, 3.851739561595853*^9}},
+ Background->RGBColor[
+  1, 0.85, 0.85],ExpressionUUID->"35072b53-3459-4d0b-a5ae-1250f21b60fc"],
+
+Cell[TextData[{
+ "Run PowerShell from command prompt and then run the ",
+ StyleBox["W",
+  FontWeight->"Bold"],
+ "indows ",
+ StyleBox["S",
+  FontWeight->"Bold"],
+ "ubsystem for ",
+ StyleBox["L",
+  FontWeight->"Bold"],
+ "inux (should be already installed)."
+}], "Text",
+ CellChangeTimes->{{3.8517401644053526`*^9, 
+  3.851740229111827*^9}},ExpressionUUID->"05f78a07-bb01-4bf9-8eaf-\
+a9ec68be7d8b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "process", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"process", "=", 
+   RowBox[{"StartProcess", "[", 
+    RowBox[{"{", 
+     RowBox[{"$SystemShell", ",", "\"\<powershell.exe\>\""}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WriteLine", "[", 
+   RowBox[{"process", ",", "\"\<wsl\>\""}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8504677835004263`*^9, 3.850467790681427*^9}, {
+   3.850467834550378*^9, 3.8504678463830423`*^9}, {3.8505106075213537`*^9, 
+   3.850510618796358*^9}, {3.850510662151415*^9, 3.850510668168353*^9}, {
+   3.85051077164491*^9, 3.8505107874399014`*^9}, {3.85051108920181*^9, 
+   3.850511117063809*^9}, {3.8505111770928183`*^9, 3.850511214818808*^9}, 
+   3.8505112532318134`*^9, 3.850511576949502*^9, 3.8506249792877364`*^9, {
+   3.851762369017054*^9, 3.8517623785410995`*^9}},
+ CellLabel->
+  "1/21/22 19:33:20 \
+In[17]:=",ExpressionUUID->"2cb8d828-9d82-4602-94c4-bb9e7eb3bbae"],
+
+Cell["For Others", "Text",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.85173951377719*^9, 3.851739561595853*^9}, {
+  3.8517400891539316`*^9, 3.8517400899851737`*^9}, {3.8517401498483024`*^9, 
+  3.8517401520079117`*^9}},
+ Background->RGBColor[
+  1, 0.85, 0.85],ExpressionUUID->"84374a37-2291-48cf-a004-160b4270f95e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"process", "=", 
+   RowBox[{"StartProcess", "[", "$SystemShell", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8504677835004263`*^9, 3.850467790681427*^9}, {
+   3.850467834550378*^9, 3.8504678463830423`*^9}, {3.8505106075213537`*^9, 
+   3.850510618796358*^9}, {3.850510662151415*^9, 3.850510668168353*^9}, {
+   3.85051077164491*^9, 3.8505107874399014`*^9}, {3.85051108920181*^9, 
+   3.850511117063809*^9}, {3.8505111770928183`*^9, 3.850511214818808*^9}, 
+   3.8505112532318134`*^9, 3.850511576949502*^9, 3.8506249792877364`*^9, {
+   3.851740253738412*^9, 
+   3.8517402609783335`*^9}},ExpressionUUID->"989b2df4-4d17-469a-923b-\
+92c08c227af8"],
+
+Cell["\<\
+When process is ready, run the following command to run SPheno. \
+\>", "Text",
+ CellChangeTimes->{{3.851740294448564*^9, 
+  3.8517403384081573`*^9}},ExpressionUUID->"ec0191eb-5efe-4aa8-9848-\
+156f80e23bf1"],
+
+Cell[BoxData[
+ RowBox[{"runSPheno", "[", 
+  RowBox[{
+  "process", ",", " ", "$SPhenoInputFilePath", ",", " ", "$SPhenoHomePath", 
+   ",", " ", "\"\<MSSM\>\"", ",", " ", "$outDirPresent"}], "]"}]], "Input",Exp\
+ressionUUID->"145e026e-35c5-4276-986c-a6b93e9592c9"],
+
+Cell["\<\
+Compare the relative timings of this command and the StandAloneprocess one. \
+\>", "Text",
+ CellChangeTimes->{{3.851763352103158*^9, 
+  3.8517633930071654`*^9}},ExpressionUUID->"5b1d4493-a224-4ddd-b987-\
+deeceaff2e0b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DeleteFile", "[", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"All", ",", "$outDirPresent"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"runSPheno", "[", 
+     RowBox[{
+     "process", ",", " ", "$SPhenoInputFilePath", ",", " ", "$SPhenoHomePath",
+       ",", " ", "\"\<MSSM\>\"", ",", " ", "$outDirPresent"}], "]"}], ",", 
+    "\[IndentingNewLine]", "10"}], "]"}], "//", 
+  "AbsoluteTiming"}], "\[IndentingNewLine]", 
+ RowBox[{"FileNames", "[", 
+  RowBox[{"All", ",", "$outDirPresent"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8517373735960035`*^9, 3.8517373957264657`*^9}, {
+   3.8517374275734677`*^9, 3.851737431785458*^9}, {3.85173746632946*^9, 
+   3.8517374958789406`*^9}, {3.851737666118976*^9, 3.851737676798977*^9}, 
+   3.851739218193011*^9, {3.851762608824688*^9, 3.851762650281253*^9}, {
+   3.851763427256169*^9, 
+   3.8517634368081694`*^9}},ExpressionUUID->"39f7505d-f2d9-49a3-94f2-\
+410a9334b109"],
+
+Cell[BoxData[
+ RowBox[{"KillProcess", "[", "process", "]"}]], "Input",
+ CellChangeTimes->{{3.851740778944806*^9, 3.8517407856898074`*^9}, {
+  3.8517623336150513`*^9, 3.851762341311051*^9}},
+ CellLabel->
+  "1/21/22 19:47:39 \
+In[27]:=",ExpressionUUID->"3c5fb01b-47d9-4b3b-a2f8-314e7edc2534"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DeleteFile", "[", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"All", ",", "$outDirPresent"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"runSPhenoStandAlone", "[", 
+      RowBox[{
+      "$SPhenoInputFilePath", ",", " ", "$SPhenoHomePath", ",", " ", 
+       "\"\<MSSM\>\"", ",", " ", "$outDirPresent"}], "]"}], "//", 
+     "AbsoluteTiming"}], ",", "\[IndentingNewLine]", "10"}], "]"}], "//", 
+  "AbsoluteTiming"}], "\[IndentingNewLine]", 
+ RowBox[{"FileNames", "[", 
+  RowBox[{"All", ",", "$outDirPresent"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.851762394966956*^9, 3.8517624134641504`*^9}, {
+  3.851762575007759*^9, 3.8517625771447706`*^9}, {3.851762714260663*^9, 
+  3.851762726433611*^9}, {3.8517634426711965`*^9, 
+  3.85176344961829*^9}},ExpressionUUID->"98dbf9d9-a3be-41b8-9ca2-\
+6669983df0a4"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Reading the produced SPC file", "Subsection",
+ CellChangeTimes->{{3.8501080696841364`*^9, 3.8501080712036996`*^9}, {
+  3.850108155479205*^9, 3.8501081673877134`*^9}, {3.8501098899794626`*^9, 
+  3.8501098962733064`*^9}, {3.850367719476799*^9, 3.850367724502673*^9}, {
+  3.8505115135074196`*^9, 3.8505115282035017`*^9}, {3.850531878629615*^9, 
+  3.850531887857073*^9}, {3.8505517321679697`*^9, 3.8505517416099653`*^9}, {
+  3.851631544874011*^9, 3.8516315511375914`*^9}, {3.851632421331736*^9, 
+  3.8516324239367633`*^9}, {3.85173951377719*^9, 3.8517395299598455`*^9}, {
+  3.851740236990852*^9, 3.851740237423826*^9}, {3.85183353270016*^9, 
+  3.851833545978505*^9}},ExpressionUUID->"8e04297d-0876-40df-8776-\
+3bdd0f599bdb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SPCblksMSSM", "=", 
+   RowBox[{"breakSPCBlock", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{"$outDirPresent", ",", "\"\<SPheno.spc.MSSM\>\""}], "}"}], 
+     "]"}], "]"}]}], ";"}]], "Input",
+ CellLabel->
+  "1/22/22 15:36:44 \
+In[6]:=",ExpressionUUID->"4bf509fc-96f4-4143-8ccd-b515253e07ae"],
+
+Cell[TextData[{
+ "As can be seen from the command above, the same command ",
+ StyleBox["breakSPCBlock",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " is used to load both input files and SPC files (SPheno output). The result \
+is an Association, but not in numerical format."
+}], "Text",
+ CellChangeTimes->{{3.85183363191543*^9, 
+  3.851833750526291*^9}},ExpressionUUID->"a310a479-1393-4739-aaee-\
+103a58a0ba87"],
+
+Cell[BoxData[{
+ RowBox[{"AssociationQ", "@", "SPCblksMSSM"}], "\[IndentingNewLine]", 
+ RowBox[{"Keys", "@", "SPCblksMSSM"}]}], "Input",
+ CellChangeTimes->{{3.8518337552452335`*^9, 3.8518337760612345`*^9}},
+ CellLabel->
+  "1/22/22 15:19:38 \
+In[10]:=",ExpressionUUID->"77500b3a-58ff-489f-aede-a24ad9e9b144"],
+
+Cell[BoxData[
+ RowBox[{"SPCblksMSSM", "[", "\"\<HiggsLHC7\>\"", "]"}]], "Input",
+ CellChangeTimes->{3.85183361707043*^9},
+ CellLabel->
+  "1/22/22 15:19:44 \
+In[12]:=",ExpressionUUID->"0bc9345d-5deb-4df2-a410-f0a7055d57da"],
+
+Cell[TextData[{
+ StyleBox["createBlockArray",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " and ",
+ StyleBox["createBlockAsso",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ " are used to convert these String-blocks in useful formats:"
+}], "Text",
+ CellChangeTimes->{{3.8518338234362807`*^9, 
+  3.8518338588350058`*^9}},ExpressionUUID->"5bfcd981-e038-4ae0-90ec-\
+247f6de0084c"],
+
+Cell[BoxData[{
+ RowBox[{"createBlockArray", "[", 
+  RowBox[{"SPCblksMSSM", "[", "\"\<HiggsLHC7\>\"", "]"}], "]"}], "\n", 
+ RowBox[{"createBlockAsso", "[", 
+  RowBox[{"SPCblksMSSM", "[", "\"\<HiggsLHC7\>\"", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.850637948597802*^9, 3.85063797372583*^9}, 
+   3.8506486254454513`*^9, {3.8506910727326665`*^9, 3.850691074702622*^9}, {
+   3.8506913108115997`*^9, 3.8506913156925993`*^9}, {3.8506967181453953`*^9, 
+   3.8506967385993943`*^9}, {3.850696786171398*^9, 3.8506967896535697`*^9}, 
+   3.850696842691575*^9, {3.8507222235198307`*^9, 3.850722235319908*^9}},
+ CellLabel->
+  "1/22/22 15:21:00 \
+In[13]:=",ExpressionUUID->"df3151c7-a8ce-45d2-9397-c16ea72379ff"],
+
+Cell[TextData[{
+ "\[OpenCurlyQuote]",
+ StyleBox["createRuleElement",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ "\[CloseCurlyQuote] can be used for turning all 2-column blocks into \
+Associations:"
+}], "Text",
+ CellChangeTimes->{{3.850649293666774*^9, 3.850649315326755*^9}, {
+  3.8518339284958534`*^9, 
+  3.851833940027831*^9}},ExpressionUUID->"859c4697-8d2f-46d3-9ddd-\
+1f7114e67201"],
+
+Cell[BoxData[
+ RowBox[{"createRuleElement", "[", 
+  RowBox[{"SPCblksMSSM", "[", "\"\<MASS\>\"", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.850703204347251*^9, 3.850703275145958*^9}, 
+   3.8507222401429157`*^9, {3.8507222754349227`*^9, 3.8507222764529233`*^9}, {
+   3.851851522567093*^9, 
+   3.851851523821094*^9}},ExpressionUUID->"a03d3194-51f4-4ebc-ae70-\
+dd43ec5269d3"],
+
+Cell["That association can then be used to pick individual parts.", "Text",
+ CellChangeTimes->{{3.850649293666774*^9, 3.850649315326755*^9}, {
+  3.8518339284958534`*^9, 3.851833940027831*^9}, {3.8518363505257072`*^9, 
+  3.8518363677672544`*^9}},ExpressionUUID->"c89953b5-5aef-4561-961b-\
+b5b27199349e"],
+
+Cell[BoxData[
+ RowBox[{"%", "[", "25", "]"}]], "Input",ExpressionUUID->"e69482ed-f0e3-43fb-b3c7-d0f5a673f574"],
+
+Cell["More examples:", "Text",
+ CellChangeTimes->{{3.850649293666774*^9, 3.850649315326755*^9}, {
+  3.8518339284958534`*^9, 3.851833940027831*^9}, {3.8518363505257072`*^9, 
+  3.8518363677672544`*^9}, {3.851851536259144*^9, 
+  3.8518515395611567`*^9}},ExpressionUUID->"bda671b0-2c05-476a-ae22-\
+f3d34a3b384f"],
+
+Cell[BoxData[{
+ RowBox[{"createRuleElement", "[", 
+  RowBox[{"SPCblksMSSM", "[", "\"\<FlavorKitQFV\>\"", "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "[", "201", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%%", "/@", 
+  RowBox[{"{", 
+   RowBox[{"601", ",", "1900", ",", "4000"}], "}"}]}]}], "Input",
+ CellChangeTimes->{
+  3.850649288571724*^9, {3.850649320376727*^9, 3.8506493770387335`*^9}, {
+   3.850691921696389*^9, 3.8506919488593583`*^9}, 3.8506920420843596`*^9, 
+   3.850722285582921*^9},
+ CellLabel->
+  "1/22/22 16:02:50 \
+In[37]:=",ExpressionUUID->"efed0008-743e-4a7a-b850-f36d1c29bfef"],
+
+Cell[TextData[{
+ "The following command is a shorthand for an elaborate version of the above \
+functionL. See that in the last example, the argument \[LineSeparator]",
+ StyleBox["{ { 25, 36 }, 23 }",
+  FontSlant->"Italic"],
+ "  - is neither a number, nor a vector. Hence no result is generated... "
+}], "Text",
+ CellChangeTimes->{{3.8518340080199738`*^9, 3.8518340438720074`*^9}, {
+  3.8518362210618315`*^9, 3.851836305986506*^9}, {3.851851327642347*^9, 
+  3.851851328834342*^9}},ExpressionUUID->"44ac990c-0d2b-4ddc-8937-\
+a9df42b1b4df"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pickWithIndex", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<MASS\>\""}], "]"}], "[", "25", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pickWithIndex", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<MASS\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{"25", ",", "36", ",", "23"}], "}"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pickWithIndex", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<MASS\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"25", ",", "36"}], "}"}], ",", "23"}], "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8506485197734604`*^9, 3.8506485362885466`*^9}, {
+   3.850648616040396*^9, 3.850648649025439*^9}, {3.8506914384976177`*^9, 
+   3.8506914423476286`*^9}, {3.8506914992046037`*^9, 3.8506915068106008`*^9}, 
+   3.8506918496143513`*^9, {3.8507030755853443`*^9, 3.8507030782352943`*^9}, {
+   3.850703164235656*^9, 3.850703167748519*^9}, {3.8507036457238426`*^9, 
+   3.8507036505888033`*^9}, {3.8507036979948864`*^9, 3.850703748930858*^9}, {
+   3.850722260775934*^9, 3.85072226390792*^9}, {3.8507260084629164`*^9, 
+   3.850726016547925*^9}, {3.851833969431845*^9, 3.851833972078813*^9}},
+ CellLabel->
+  "1/22/22 16:02:55 \
+In[40]:=",ExpressionUUID->"b64e2d72-15b5-44bc-ad48-75675f6aa71c"],
+
+Cell["\<\
+There are some blocks in the SPC output representing matrices. The first two \
+elements of each entry of those blocks represent matrix indices and the third \
+one - its value.\
+\>", "Text",
+ CellChangeTimes->{{3.8518514575623875`*^9, 3.851851477896114*^9}, {
+  3.85185155348413*^9, 
+  3.851851595473138*^9}},ExpressionUUID->"8f554194-1bc0-4f27-8bfa-\
+2ab00b239884"],
+
+Cell[BoxData[{
+ RowBox[{"SPCblksMSSM", "[", "\"\<Yd\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"createBlockArray", "@", "%"}]}], "Input",
+ CellChangeTimes->{{3.851851347946315*^9, 3.8518513608143883`*^9}, {
+  3.8518516001601305`*^9, 3.851851603403132*^9}},
+ CellLabel->
+  "1/22/22 20:16:43 \
+In[51]:=",ExpressionUUID->"81da7b81-24ff-4d2a-8726-1e5a9b066fbf"],
+
+Cell["\<\
+pickMatAsso and pickMatList help us handle them for future computation:\
+\>", "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 
+  3.8518516829221916`*^9}},ExpressionUUID->"d4aece09-8900-449d-b657-\
+0ac87a3d0a6e"],
+
+Cell[BoxData[{
+ RowBox[{"pickMatAsso", "[", 
+  RowBox[{"SPCblksMSSM", ",", "\"\<Yd\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"pickMatList", "[", 
+  RowBox[{"SPCblksMSSM", ",", "\"\<Yd\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.851851700547162*^9, 3.851851700804163*^9}},
+ CellLabel->
+  "1/22/22 20:18:21 \
+In[54]:=",ExpressionUUID->"461e2205-e593-4f2f-b31f-3a59f406cd72"],
+
+Cell["\<\
+They wont work for blocks with any other structure than this:\
+\>", "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 3.8518516829221916`*^9}, {3.851851722320526*^9, 
+  3.8518517531627254`*^9}},ExpressionUUID->"9770ed66-e50f-4049-bacb-\
+8fb885ad279b"],
+
+Cell[BoxData[{
+ RowBox[{"createBlockArray", "@", 
+  RowBox[{"SPCblksMSSM", "[", "\"\<FlavorKitQFV\>\"", "]"}]}], "\n", 
+ RowBox[{"pickMatAsso", "[", 
+  RowBox[{"SPCblksMSSM", ",", "\"\<FlavorKitQFV\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"pickMatList", "[", 
+  RowBox[{"SPCblksMSSM", ",", "\"\<FlavorKitQFV\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.851836516549661*^9, 3.851836539666404*^9}, {
+  3.851851755467723*^9, 3.8518518103847218`*^9}},
+ CellLabel->
+  "1/22/22 20:20:12 \
+In[65]:=",ExpressionUUID->"f5237abd-fdb5-4ce0-a546-a6892965a0aa"],
+
+Cell["\<\
+For matrix-blocks, we can pick specific elements directly, using the \
+following command:\
+\>", "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 3.8518516829221916`*^9}, {3.851851722320526*^9, 
+  3.8518517531627254`*^9}, {3.8518518338122497`*^9, 
+  3.8518518721124687`*^9}},ExpressionUUID->"50368483-d037-4101-84db-\
+8ea4c6b50e51"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pickMatElement", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<Yd\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{"3", ",", "2"}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pickMatElement", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<Yd\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"3", ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "3"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "2"}], "}"}]}], "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8506489939432087`*^9, 3.8506490106162434`*^9}, {
+  3.850694909448322*^9, 3.850694925687199*^9}, {3.8506952058952703`*^9, 
+  3.850695239275316*^9}, {3.850722303821927*^9, 3.850722304622933*^9}},
+ CellLabel->
+  "1/22/22 20:21:03 \
+In[68]:=",ExpressionUUID->"986aa364-b489-48e2-900b-180fa5fa3b5f"],
+
+Cell["\<\
+For blocks dealing with couplings b/w multiple particles, the first column is \
+the value and the particle codes are the last entries:\
+\>", "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 3.8518516829221916`*^9}, {3.851851722320526*^9, 
+  3.8518517531627254`*^9}, {3.8518518338122497`*^9, 3.8518518721124687`*^9}, {
+  3.851853906994695*^9, 
+  3.851853964516947*^9}},ExpressionUUID->"7989bc29-03f6-487f-9d92-\
+8c33812e64b9"],
+
+Cell[BoxData[
+ RowBox[{"SPCblksMSSM", "[", "\"\<HiggsCouplingsFermions\>\"", "]"}]], "Input",\
+
+ CellChangeTimes->{{3.851853058220473*^9, 3.851853060524463*^9}},
+ CellLabel->
+  "1/22/22 20:56:35 \
+In[72]:=",ExpressionUUID->"7decf823-00d8-4ec9-bf58-2b4fae86dbeb"],
+
+Cell[TextData[{
+ "The following function picks out these entries if one specifies the codes \
+of the particles involved (in order). The example picks the coupling b/w \
+Higgs (25) and two \[OpenCurlyQuote]",
+ StyleBox["s",
+  IgnoreSpellCheck->True,
+  FontSlant->"Italic"],
+ StyleBox["\[CloseCurlyQuote]",
+  IgnoreSpellCheck->True],
+ " quarks (3):"
+}], "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 3.8518516829221916`*^9}, {3.851851722320526*^9, 
+  3.8518517531627254`*^9}, {3.8518518338122497`*^9, 3.8518518721124687`*^9}, {
+  3.851853906994695*^9, 
+  3.8518541332007675`*^9}},ExpressionUUID->"639230dd-cf5c-413a-b894-\
+8876f316abdb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pickCouplings", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<HiggsCouplingsFermions\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{"25", ",", "3", ",", "3"}], "}"}], "]"}]], "Input",
+ CellLabel->
+  "1/22/22 20:58:56 \
+In[73]:=",ExpressionUUID->"d83e5c90-ea2b-4c5d-8b65-c64894d79776"],
+
+Cell["\<\
+Multiple entries can also be picked by supplying them as a list of entries...\
+\
+\>", "Text",
+ CellChangeTimes->{{3.8518516226791286`*^9, 3.851851624483141*^9}, {
+  3.8518516627741613`*^9, 3.8518516829221916`*^9}, {3.851851722320526*^9, 
+  3.8518517531627254`*^9}, {3.8518518338122497`*^9, 3.8518518721124687`*^9}, {
+  3.851853906994695*^9, 
+  3.8518541744765825`*^9}},ExpressionUUID->"50e514cd-fff5-4560-9b04-\
+6da855aa5a19"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pickCouplings", "[", 
+   RowBox[{"SPCblksMSSM", ",", "\"\<HiggsCouplingsFermions\>\""}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"25", ",", "3", ",", "3"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"36", ",", "6", ",", "6"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"25", ",", "15", ",", "15"}], "}"}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.850650104477347*^9, 3.8506501711193037`*^9}, {
+   3.850696549326446*^9, 3.8506965493653946`*^9}, {3.850696896686601*^9, 
+   3.850696958775494*^9}, {3.850697534932519*^9, 3.8506975371115274`*^9}, {
+   3.850697576679619*^9, 3.850697590948665*^9}, {3.8506976400236177`*^9, 
+   3.8506976646004543`*^9}, {3.850697944441438*^9, 3.850697946984439*^9}, {
+   3.8507223106159325`*^9, 3.8507223123959208`*^9}, 3.8518541402937636`*^9},
+ CellLabel->
+  "1/22/22 20:59:36 \
+In[74]:=",ExpressionUUID->"ec27509a-5ea1-4063-8637-308df7163147"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{959, 1012},
+WindowMargins->{{Automatic, -5}, {Automatic, 0}},
+Magnification:>1. Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d124bdc2-3b7e-4710-8c9b-f66591da05d0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 157, 3, 69, "Chapter",ExpressionUUID->"860540f0-e3ad-49df-87ef-ed7adb617f53"],
+Cell[740, 27, 249, 6, 40, "Input",ExpressionUUID->"2f2160f8-9190-49a3-9d77-db8e59b0de5d"],
+Cell[CellGroupData[{
+Cell[1014, 37, 351, 12, 54, "Subsection",ExpressionUUID->"9ed897cc-ad98-4193-88b1-a382caa1196e"],
+Cell[1368, 51, 221, 5, 35, "Text",ExpressionUUID->"f6138d52-d620-460b-89fe-0b88f0a6da2c"],
+Cell[1592, 58, 309, 6, 40, "Input",ExpressionUUID->"2a4e8168-09f8-44b3-b066-4712c521715e"],
+Cell[1904, 66, 398, 8, 35, "Text",ExpressionUUID->"3a8bc727-3688-4157-bf42-0e15f7339d36"],
+Cell[2305, 76, 1380, 35, 174, "Input",ExpressionUUID->"9f9b14b2-f347-441a-812c-3a4d35a43b1b"],
+Cell[3688, 113, 362, 9, 40, "Input",ExpressionUUID->"6e89794d-f689-4b36-a44f-f2cc45c85223"],
+Cell[4053, 124, 203, 3, 35, "Text",ExpressionUUID->"9f64fcda-d1d2-49d7-8fd4-279f3b68bd4f"],
+Cell[4259, 129, 256, 5, 40, "Input",ExpressionUUID->"e5473bfb-83ee-4f2f-b3ec-231bcba5eda0"],
+Cell[4518, 136, 361, 13, 35, "Text",ExpressionUUID->"b83305fc-7e35-484b-b93c-6f96c4a4014e"],
+Cell[4882, 151, 264, 6, 40, "Input",ExpressionUUID->"e58666b6-a324-4f38-93a3-8930f565b6a2"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5183, 162, 217, 4, 38, "Subsection",ExpressionUUID->"4a819204-d89d-4d49-b06a-6f73f59afbc1"],
+Cell[5403, 168, 494, 9, 40, "Input",ExpressionUUID->"cc1beaa3-21fe-4a63-a9aa-74591c09eb5e"],
+Cell[5900, 179, 690, 16, 40, "Input",ExpressionUUID->"6effbd24-2068-4eeb-a3f1-674cb51b74e9"],
+Cell[CellGroupData[{
+Cell[6615, 199, 918, 20, 79, "Input",ExpressionUUID->"2e79b54b-9237-4c53-8502-686558095e83"],
+Cell[7536, 221, 443, 8, 44, "Output",ExpressionUUID->"2cd744e1-0ccc-4843-967d-59d88da73ee6"]
+}, Open  ]],
+Cell[7994, 232, 463, 11, 40, "Input",ExpressionUUID->"88fa12eb-7ed9-4e71-b262-3d8461099994"],
+Cell[8460, 245, 307, 6, 40, "Input",ExpressionUUID->"f8fa4582-9a82-4247-a649-01ef65cac2f5"],
+Cell[8770, 253, 333, 7, 40, "Input",ExpressionUUID->"3c218dc1-9f40-48f7-b47e-8b570ccc7a10"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9152, 266, 505, 7, 69, "Chapter",ExpressionUUID->"0d10d9cc-3c0e-48d1-8aad-a6981d9e7ba1"],
+Cell[9660, 275, 505, 11, 40, "Input",ExpressionUUID->"5a1a78d5-bf36-4b1e-9f7e-06547db04ea5"],
+Cell[CellGroupData[{
+Cell[10190, 290, 550, 8, 67, "Section",ExpressionUUID->"38844a82-7714-4383-ba17-c2a77a73a690"],
+Cell[CellGroupData[{
+Cell[10765, 302, 648, 13, 53, "Subsection",ExpressionUUID->"267e98b2-e40b-4758-a7f4-bcad6e6e531d"],
+Cell[11416, 317, 604, 15, 57, "Text",ExpressionUUID->"f7f230c9-f3f5-4219-adf6-27e200e342e7"],
+Cell[12023, 334, 463, 12, 40, "Input",ExpressionUUID->"bf9425eb-31b9-4035-b90c-11caecf4ee2e"],
+Cell[12489, 348, 221, 5, 34, "Text",ExpressionUUID->"b9797910-391d-4d70-9f80-bff9f62a0715"],
+Cell[12713, 355, 1842, 27, 40, "Input",ExpressionUUID->"048b2b4d-31f3-4f3a-96fe-59b58ac273fb"],
+Cell[14558, 384, 503, 10, 76, "Text",ExpressionUUID->"30a5a436-c94c-4ee6-9c5c-5683de898c15"],
+Cell[15064, 396, 394, 8, 40, "Input",ExpressionUUID->"16452831-8b4e-4cfe-9b69-643502084f2a"],
+Cell[15461, 406, 479, 11, 104, "Input",ExpressionUUID->"d2ca3b6a-0570-476c-9405-1e192cc5807e"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[15977, 422, 713, 14, 37, "Subsection",ExpressionUUID->"003d67bf-d7cb-4906-83d1-367921ce845d"],
+Cell[16693, 438, 737, 19, 57, "Text",ExpressionUUID->"15b910ba-aefc-48d2-9308-e29d39634e35"],
+Cell[17433, 459, 385, 10, 27, "Input",ExpressionUUID->"e16775a2-2dc1-436f-91bf-ee981c23cdbf"],
+Cell[17821, 471, 475, 12, 27, "Input",ExpressionUUID->"4acc1949-2992-4fb6-9005-41f00aa6b16d"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[18345, 489, 505, 7, 53, "Section",ExpressionUUID->"19045fad-4fe1-4029-8164-3cc27b5b950d"],
+Cell[18853, 498, 885, 26, 80, "Text",ExpressionUUID->"d8bec370-55f0-4474-b764-d3a37cdb8331"],
+Cell[19741, 526, 417, 8, 40, "Input",ExpressionUUID->"6e187325-8f6a-449a-9281-1159b5ecae05"],
+Cell[20161, 536, 606, 13, 34, "Text",ExpressionUUID->"20aff312-c821-45bc-905e-1bc14b7db92f"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[20816, 555, 371, 6, 58, "Chapter",ExpressionUUID->"484bdb1f-597f-4475-a2e1-8553af5ae703"],
+Cell[CellGroupData[{
+Cell[21212, 565, 622, 9, 67, "Section",ExpressionUUID->"ba169a75-04b1-4806-897f-1d0b8f36f7b4"],
+Cell[CellGroupData[{
+Cell[21859, 578, 574, 8, 54, "Subsection",ExpressionUUID->"e740aa61-8735-46da-8b26-6747c2adffb9"],
+Cell[22436, 588, 670, 14, 78, "Text",ExpressionUUID->"088d6783-784d-4287-8f34-85d78a234b51"],
+Cell[23109, 604, 596, 13, 78, "Input",ExpressionUUID->"431821c9-aef2-4468-88ca-be42789dea61"],
+Cell[23708, 619, 541, 14, 97, "Input",ExpressionUUID->"82c0335f-163c-40e0-8b56-740582cc9a7f"],
+Cell[24252, 635, 321, 7, 56, "Text",ExpressionUUID->"30be3c8b-a9bd-4989-8a0c-92ecc25299ae"],
+Cell[24576, 644, 478, 10, 40, "Input",ExpressionUUID->"18f2972a-6cef-4a64-ba54-a45fcd92ba62"],
+Cell[25057, 656, 359, 8, 56, "Text",ExpressionUUID->"f83fc1c2-581a-493c-af14-fb647aaf6041"],
+Cell[25419, 666, 250, 5, 40, "Input",ExpressionUUID->"de226e1f-77e3-47e7-b769-168dfc80fed2"],
+Cell[25672, 673, 247, 6, 56, "Text",ExpressionUUID->"65566304-6f26-4e70-ab11-00b7ec7dade3"],
+Cell[25922, 681, 324, 6, 40, "Input",ExpressionUUID->"95cb0ba1-0a3a-4e22-be5b-6aab150fdd9f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[26283, 692, 526, 8, 38, "Subsection",ExpressionUUID->"8aa17e57-316b-4dba-9b6b-ee38efda4e6d"],
+Cell[CellGroupData[{
+Cell[26834, 704, 519, 8, 44, "Subsubsection",ExpressionUUID->"1dfd6b03-aaf9-4f3f-99c3-fbd7e5a0211e"],
+Cell[27356, 714, 373, 9, 56, "Text",ExpressionUUID->"5246b694-f289-4c94-9ee4-c4d659f8bcfe"],
+Cell[27732, 725, 533, 12, 59, "Input",ExpressionUUID->"de620ed8-4109-4c52-b9a9-ad75b8e37010"],
+Cell[28268, 739, 311, 7, 56, "Text",ExpressionUUID->"16e18f1a-a605-466e-91e9-245e8eff2d7b"],
+Cell[28582, 748, 484, 13, 78, "Input",ExpressionUUID->"5ba94d39-8da9-43e1-b742-ff0fd7cd20b3"],
+Cell[29069, 763, 553, 12, 101, "Text",ExpressionUUID->"6ce99f3c-99c2-41c1-8c46-a31b531d305e"],
+Cell[29625, 777, 625, 16, 78, "Input",ExpressionUUID->"321c8046-9352-4cd8-84f4-0d438998aec9"],
+Cell[30253, 795, 438, 9, 56, "Text",ExpressionUUID->"593ffaf5-c760-4ee7-9d30-0a03b535a4d8"],
+Cell[30694, 806, 947, 26, 97, "Input",ExpressionUUID->"433a99d9-6726-49c5-9125-36815428002f"],
+Cell[31644, 834, 400, 6, 34, "Text",ExpressionUUID->"36864e89-f4b4-46b2-a157-3de53a94b275"],
+Cell[32047, 842, 1050, 27, 97, "Input",ExpressionUUID->"c870a313-9e2e-4207-b5f9-6d73c10befc5"],
+Cell[33100, 871, 405, 10, 34, "Text",ExpressionUUID->"fa6306ea-da60-4e0b-9824-5a6952db3656"],
+Cell[33508, 883, 879, 24, 97, "Input",ExpressionUUID->"1e15df7c-dbe6-4195-9b9f-214deb9ed5c2"],
+Cell[34390, 909, 319, 5, 34, "Text",ExpressionUUID->"def6057b-74e3-4dd2-90ea-11779e34f19d"],
+Cell[34712, 916, 1937, 47, 143, "Input",ExpressionUUID->"4e8ef4fa-a50c-495a-aa8b-d8a0e832a36b"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[36686, 968, 534, 8, 34, "Subsubsection",ExpressionUUID->"c498e166-6f5a-481e-b504-6907e6e3fb61"],
+Cell[37223, 978, 187, 3, 34, "Text",ExpressionUUID->"3647f7f4-05ec-42df-94cf-f5b43cff7e85"],
+Cell[37413, 983, 744, 16, 78, "Input",ExpressionUUID->"d2d24ca4-ecb4-4afd-837f-6165b4133dd2"],
+Cell[CellGroupData[{
+Cell[38182, 1003, 790, 17, 78, "Input",ExpressionUUID->"b537e61f-1717-4fc8-90ed-9ab77518eb4f"],
+Cell[38975, 1022, 606, 18, 63, "Output",ExpressionUUID->"480e37e0-1851-4859-80b7-db07032ad71f"]
+}, Open  ]],
+Cell[39596, 1043, 193, 3, 34, "Text",ExpressionUUID->"b34e7e73-011b-4af8-a3e5-4bc9bed50aac"],
+Cell[39792, 1048, 500, 12, 78, "Input",ExpressionUUID->"a1bce1c3-b86e-4e2f-82dd-942c81d91627"],
+Cell[CellGroupData[{
+Cell[40317, 1064, 1472, 34, 211, "Input",ExpressionUUID->"86a9d8b7-d7ac-400f-9e83-1dfd3dec46a2"],
+Cell[41792, 1100, 1998, 65, 150, "Output",ExpressionUUID->"7608bc30-f40a-4ce5-a38d-dabfed20c1b4"]
+}, Open  ]],
+Cell[43805, 1168, 351, 7, 56, "Text",ExpressionUUID->"2d3e35fa-15f9-4866-9d76-23fdf3ded5d8"],
+Cell[44159, 1177, 1760, 41, 268, "Input",ExpressionUUID->"20797f44-fabd-49b1-9e6b-e1ccd69c1c93"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[45968, 1224, 195, 3, 38, "Subsection",ExpressionUUID->"6c0c50b5-47ce-4505-9099-26898e8e24f3"],
+Cell[46166, 1229, 226, 4, 35, "Text",ExpressionUUID->"cd87610b-c0d1-4859-b92c-2a404738e102"],
+Cell[46395, 1235, 329, 8, 40, "Input",ExpressionUUID->"4b34d7c9-eb2d-4abb-a0b6-42ca9e31b6af"],
+Cell[46727, 1245, 302, 7, 35, "Text",ExpressionUUID->"ac287e82-1a1f-4625-8c3d-3b426e2b04f8"],
+Cell[47032, 1254, 779, 20, 67, "Input",ExpressionUUID->"800ea85e-4b23-4a17-a340-5b51bdc10a1f"],
+Cell[47814, 1276, 308, 8, 35, "Text",ExpressionUUID->"efa9dcdb-326a-4463-b274-f4a3406976bf"],
+Cell[48125, 1286, 306, 7, 40, "Input",ExpressionUUID->"943449a0-b4eb-4429-a901-2144ad3f709f"],
+Cell[48434, 1295, 257, 4, 35, "Text",ExpressionUUID->"3d325dc7-65db-4411-a1ed-d4ab007c6c0d"],
+Cell[48694, 1301, 619, 14, 40, "Input",ExpressionUUID->"3d1a6f18-1b8f-45d8-9053-1f631d876f2c"],
+Cell[49316, 1317, 418, 8, 35, "Text",ExpressionUUID->"26c464b1-770f-4ced-b56b-06fdda2f7320"],
+Cell[49737, 1327, 1276, 25, 162, "Input",ExpressionUUID->"7cedeb8f-4a20-4a2d-b84e-3a8b46669468"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[51062, 1358, 688, 10, 53, "Section",ExpressionUUID->"40484e13-5a2b-4f5b-983e-ac5c4fce2818"],
+Cell[51753, 1370, 889, 21, 104, "Text",ExpressionUUID->"39a3e06b-55b9-4754-a472-ded68c34b747"],
+Cell[52645, 1393, 1125, 28, 79, "Input",ExpressionUUID->"ab9ea3e9-40e8-4651-8060-ab8c1f338343"],
+Cell[53773, 1423, 200, 5, 40, "Input",ExpressionUUID->"03b92d7f-1f77-45e7-84a4-9c487cd662e5"],
+Cell[CellGroupData[{
+Cell[53998, 1432, 666, 10, 54, "Subsection",ExpressionUUID->"f68da5a1-4ed2-4bf1-805d-aed44c598992"],
+Cell[54667, 1444, 589, 10, 81, "Text",ExpressionUUID->"c4a360d8-0537-4e59-aae3-a53be1626002"],
+Cell[55259, 1456, 251, 5, 28, "Input",ExpressionUUID->"393590a8-3225-443b-a19a-e2cfb9af43a7"],
+Cell[55513, 1463, 157, 3, 28, "Input",ExpressionUUID->"ede16c3d-145e-467f-858d-027b61edb79a"],
+Cell[55673, 1468, 740, 12, 104, "Text",ExpressionUUID->"ed409771-caae-4efc-9c57-402bdaa28f55"],
+Cell[56416, 1482, 382, 8, 40, "Input",ExpressionUUID->"a9cf524a-4510-4d08-90bc-59534776212a"],
+Cell[56801, 1492, 642, 9, 51, "Text",ExpressionUUID->"35072b53-3459-4d0b-a5ae-1250f21b60fc"],
+Cell[57446, 1503, 395, 14, 35, "Text",ExpressionUUID->"05f78a07-bb01-4bf9-8eaf-a9ec68be7d8b"],
+Cell[57844, 1519, 984, 21, 79, "Input",ExpressionUUID->"2cb8d828-9d82-4602-94c4-bb9e7eb3bbae"],
+Cell[58831, 1542, 747, 11, 51, "Text",ExpressionUUID->"84374a37-2291-48cf-a004-160b4270f95e"],
+Cell[59581, 1555, 677, 12, 28, "Input",ExpressionUUID->"989b2df4-4d17-469a-923b-92c08c227af8"],
+Cell[60261, 1569, 216, 5, 35, "Text",ExpressionUUID->"ec0191eb-5efe-4aa8-9848-156f80e23bf1"],
+Cell[60480, 1576, 262, 5, 28, "Input",ExpressionUUID->"145e026e-35c5-4276-986c-a6b93e9592c9"],
+Cell[60745, 1583, 228, 5, 35, "Text",ExpressionUUID->"5b1d4493-a224-4ddd-b987-deeceaff2e0b"],
+Cell[60976, 1590, 1030, 23, 105, "Input",ExpressionUUID->"39f7505d-f2d9-49a3-94f2-410a9334b109"],
+Cell[62009, 1615, 290, 6, 40, "Input",ExpressionUUID->"3c5fb01b-47d9-4b3b-a2f8-314e7edc2534"],
+Cell[62302, 1623, 934, 22, 105, "Input",ExpressionUUID->"98dbf9d9-a3be-41b8-9ca2-6669983df0a4"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[63273, 1650, 726, 10, 38, "Subsection",ExpressionUUID->"8e04297d-0876-40df-8776-3bdd0f599bdb"],
+Cell[64002, 1662, 353, 10, 40, "Input",ExpressionUUID->"4bf509fc-96f4-4143-8ccd-b515253e07ae"],
+Cell[64358, 1674, 432, 10, 58, "Text",ExpressionUUID->"a310a479-1393-4739-aaee-103a58a0ba87"],
+Cell[64793, 1686, 306, 6, 60, "Input",ExpressionUUID->"77500b3a-58ff-489f-aede-a24ad9e9b144"],
+Cell[65102, 1694, 222, 5, 40, "Input",ExpressionUUID->"0bc9345d-5deb-4df2-a410-f0a7055d57da"],
+Cell[65327, 1701, 415, 12, 35, "Text",ExpressionUUID->"5bfcd981-e038-4ae0-90ec-247f6de0084c"],
+Cell[65745, 1715, 703, 12, 60, "Input",ExpressionUUID->"df3151c7-a8ce-45d2-9397-c16ea72379ff"],
+Cell[66451, 1729, 407, 11, 35, "Text",ExpressionUUID->"859c4697-8d2f-46d3-9ddd-1f7114e67201"],
+Cell[66861, 1742, 374, 7, 28, "Input",ExpressionUUID->"a03d3194-51f4-4ebc-ae70-dd43ec5269d3"],
+Cell[67238, 1751, 302, 4, 35, "Text",ExpressionUUID->"c89953b5-5aef-4561-961b-b5b27199349e"],
+Cell[67543, 1757, 110, 1, 28, "Input",ExpressionUUID->"e69482ed-f0e3-43fb-b3c7-d0f5a673f574"],
+Cell[67656, 1760, 308, 5, 35, "Text",ExpressionUUID->"bda671b0-2c05-476a-ae22-f3d34a3b384f"],
+Cell[67967, 1767, 602, 14, 79, "Input",ExpressionUUID->"efed0008-743e-4a7a-b850-f36d1c29bfef"],
+Cell[68572, 1783, 537, 10, 58, "Text",ExpressionUUID->"44ac990c-0d2b-4ddc-8937-a9df42b1b4df"],
+Cell[69112, 1795, 1291, 28, 79, "Input",ExpressionUUID->"b64e2d72-15b5-44bc-ad48-75675f6aa71c"],
+Cell[70406, 1825, 375, 8, 58, "Text",ExpressionUUID->"8f554194-1bc0-4f27-8bfa-2ab00b239884"],
+Cell[70784, 1835, 360, 7, 60, "Input",ExpressionUUID->"81da7b81-24ff-4d2a-8726-1e5a9b066fbf"],
+Cell[71147, 1844, 276, 6, 35, "Text",ExpressionUUID->"d4aece09-8900-449d-b657-0ac87a3d0a6e"],
+Cell[71426, 1852, 442, 9, 79, "Input",ExpressionUUID->"461e2205-e593-4f2f-b31f-3a59f406cd72"],
+Cell[71871, 1863, 314, 6, 35, "Text",ExpressionUUID->"9770ed66-e50f-4049-bacb-8fb885ad279b"],
+Cell[72188, 1871, 561, 12, 79, "Input",ExpressionUUID->"f5237abd-fdb5-4ce0-a546-a6892965a0aa"],
+Cell[72752, 1885, 395, 8, 35, "Text",ExpressionUUID->"50368483-d037-4101-84db-8ea4c6b50e51"],
+Cell[73150, 1895, 853, 22, 60, "Input",ExpressionUUID->"986aa364-b489-48e2-900b-180fa5fa3b5f"],
+Cell[74006, 1919, 489, 9, 35, "Text",ExpressionUUID->"7989bc29-03f6-487f-9d92-8c33812e64b9"],
+Cell[74498, 1930, 262, 6, 40, "Input",ExpressionUUID->"7decf823-00d8-4ec9-bf58-2b4fae86dbeb"],
+Cell[74763, 1938, 692, 16, 58, "Text",ExpressionUUID->"639230dd-cf5c-413a-b894-8876f316abdb"],
+Cell[75458, 1956, 316, 8, 40, "Input",ExpressionUUID->"d83e5c90-ea2b-4c5d-8b65-c64894d79776"],
+Cell[75777, 1966, 436, 9, 35, "Text",ExpressionUUID->"50e514cd-fff5-4560-9b04-6da855aa5a19"],
+Cell[76216, 1977, 949, 20, 40, "Input",ExpressionUUID->"ec27509a-5ea1-4063-8637-308df7163147"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

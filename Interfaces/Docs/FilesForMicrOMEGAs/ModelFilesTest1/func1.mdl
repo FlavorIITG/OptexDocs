@@ -1,0 +1,48 @@
+Triplet_Singlet. Model (un. gauge)
+ Constraints 
+ Name  |> Expression                                                                                                                                                                                                                                                                                                <|
+CW     |sqrt(1-SW^2) % cos of the Weinberg angle
+MW     |MZ*CW
+Lqcd   |initQCD5(alfSMZ, McMc, MbMb, Mtp)
+Mb     |MbEff(Q)
+Mt     |MtEff(Q)
+Mc     |McEff(Q)
+PI     |acos(-1)
+Mbp    |MbMb*(1+4/3*alphaQCD(MbMb)/PI)
+Mcp    |Mc*(1+4/3*alphaQCD(Mc)/PI)
+vev2   |2*MW*SW/EE
+vd     |sqrt(vev2^2-4*vt^2)
+cosb   |sqrt(1-sinb^2)
+mu1    |4*vt*mch^2/vev2^2
+lamH   |(mh1^2*cosb^2+mh2^2*sinb^2)/(2*vd^2)
+lamT   |1/(2*vt^2)*(mh1^2*sinb^2+mh2^2*cosb^2-mch^2*vd^2/vev2^2)
+lamHT  |2*mch^2/vev2^2+(mh1^2-mh2^2)*sinb*cosb/(vd*vt)
+muHsq  |lamH*vd^2+vt^2/2*lamHT-vt/2*mu1
+muTsq  |vd^2*lamHT/2+vt^2*lamT-vd^2*mu1/(4*vt)
+mssq   |(MX^2-lamHS*vd^2-lamTS*vt^2)/2
+B00000 |2*cosb*lamT*vt+lamHT*sinb*vd
+B00001 |cosb*lamHT*vd-2*lamT*sinb*vt
+B00002 |cosb*mu1*sinb^2-4*lamH*sinb^3*vd-2*cosb*lamHT*sinb^2*vt-4*cosb^2*cosb*lamT*vt-2*cosb^2*lamHT*sinb*vd
+B00003 |2*mu1*sinb-3*mu1*sinb^3-2*cosb*lamHT*vd-4*lamHT*sinb*vt+6*lamHT*sinb^3*vt
+B00004 |B00003-12*cosb*lamH*sinb^2*vd+6*cosb*lamHT*sinb^2*vd+12*cosb^2*lamT*sinb*vt
+B00005 |2*cosb*vt+sinb*vd
+B00006 |cosb*mu1-2*cosb*lamHT*vt-3*cosb*mu1*sinb^2+4*lamHT*sinb*vd-6*lamHT*sinb^3*vd
+B00007 |B00006+6*cosb*lamHT*sinb^2*vt-12*cosb*lamT*sinb^2*vt-12*cosb^2*lamH*sinb*vd
+B00008 |cosb*lamTS*vt+lamHS*sinb*vd
+B00009 |cosb*vd-2*sinb*vt
+B00010 |1-2*SW^2
+B00011 |cosb^2*mu1*sinb-4*lamT*sinb^3*vt+2*cosb*lamHT*sinb^2*vd+4*cosb^2*cosb*lamH*vd-2*cosb^2*lamHT*sinb*vt
+B00012 |cosb*lamHS*vd-lamTS*sinb*vt
+B00013 |2*cosb^2*lamT+lamHT*sinb^2
+B00014 |lamHT-2*lamT
+B00015 |cosb^2*lamHT+2*lamT*sinb^2
+B00016 |cosb^4*lamT+lamH*sinb^4+cosb^2*lamHT*sinb^2
+B00017 |lamHT-2*cosb^2*lamT+2*lamH*sinb^2-2*lamHT*sinb^2
+B00018 |2-sinb^2
+B00019 |lamHT+6*cosb^2*lamH*sinb^2-6*cosb^2*lamHT*sinb^2+6*cosb^2*lamT*sinb^2
+B00020 |cosb^2*lamTS+lamHS*sinb^2
+B00021 |lamHT-2*cosb^2*lamH-2*lamHT*sinb^2+2*lamT*sinb^2
+B00022 |lamHS-lamTS
+B00023 |1+sinb^2
+B00024 |cosb^4*lamH+lamT*sinb^4+cosb^2*lamHT*sinb^2
+B00025 |cosb^2*lamHS+lamTS*sinb^2
